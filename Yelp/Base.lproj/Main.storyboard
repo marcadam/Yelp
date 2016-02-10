@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Yelp-->
+        <!--Businesses View Controller-->
         <scene sceneID="5L9-Uz-lNK">
             <objects>
                 <viewController id="2xI-yr-O5N" customClass="BusinessesViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -128,7 +128,13 @@
                             <constraint firstItem="SKj-dl-EkL" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="z1X-9W-xhl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yelp" id="Qke-hr-hZt"/>
+                    <navigationItem key="navigationItem" id="Qke-hr-hZt">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="Crn-uG-L71">
+                            <connections>
+                                <segue destination="xpm-I4-Tgl" kind="modal" id="ed9-7C-grl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="SKj-dl-EkL" id="Yrg-TX-5iA"/>
                     </connections>
@@ -136,6 +142,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1271" y="337"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="cJP-ci-9zg">
+            <objects>
+                <viewController id="tAa-nE-tqk" customClass="FilterViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KRN-Nb-8kV"/>
+                        <viewControllerLayoutGuide type="bottom" id="oMl-fn-Of6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aZb-yK-VIT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hRr-0j-K9E">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="PlK-ze-AJE">
+                            <connections>
+                                <action selector="didTapCancel:" destination="tAa-nE-tqk" id="APz-Dt-q2Q"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="xxS-tr-XDg"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCj-Xm-DnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2141" y="337"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tbE-Q7-jh5">
@@ -154,6 +186,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDZ-J1-AdR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="821.06666666666661" y="337.48666666666668"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AaH-2y-HIT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xpm-I4-Tgl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0X9-vf-aFb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tAa-nE-tqk" kind="relationship" relationship="rootViewController" id="ueg-eT-B4U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Heo-iC-ekH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1697" y="337"/>
         </scene>
     </scenes>
 </document>
