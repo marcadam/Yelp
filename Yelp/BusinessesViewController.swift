@@ -8,19 +8,57 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController {
+class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
     var businesses: [Business]!
+    var lastSearchTerm = ""
+    var searchBar: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
+    }
 
-        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Search
+    /*
+    Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
+        self.businesses = businesses
+        self.tableView.reloadData()
+
+        for business in businesses {
+            print(business.name!)
+            print(business.address!)
+        }
+    })
+    */
+
+    /* Example of Yelp search with more search options specified
+    Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+        self.businesses = businesses
+
+        for business in businesses {
+            print(business.name!)
+            print(business.address!)
+        }
+    }
+    */
+
+    private func searchWithTerm(term: String) {
+        Business.searchWithTerm(term, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
 
@@ -29,34 +67,7 @@ class BusinessesViewController: UIViewController {
                 print(business.address!)
             }
         })
-
-/* Example of Yelp search with more search options specified
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
-        }
-*/
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -75,5 +86,24 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
 
         return cell
     }
+}
 
+// MARK: - UISearchBarDelegate
+
+extension BusinessesViewController {
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        let searchTerm = searchBar.text!
+        lastSearchTerm = searchTerm
+        searchWithTerm(searchTerm)
+    }
 }

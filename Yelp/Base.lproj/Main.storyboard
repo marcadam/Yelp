@@ -131,7 +131,7 @@
                     <navigationItem key="navigationItem" id="Qke-hr-hZt">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="Crn-uG-L71">
                             <connections>
-                                <segue destination="xpm-I4-Tgl" kind="modal" id="ed9-7C-grl"/>
+                                <segue destination="xpm-I4-Tgl" kind="modal" identifier="" id="ed9-7C-grl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
