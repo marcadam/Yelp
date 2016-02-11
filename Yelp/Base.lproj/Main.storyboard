@@ -143,7 +143,7 @@
             </objects>
             <point key="canvasLocation" x="1271" y="337"/>
         </scene>
-        <!--Filter View Controller-->
+        <!--Filters-->
         <scene sceneID="cJP-ci-9zg">
             <objects>
                 <viewController id="tAa-nE-tqk" customClass="FilterViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -172,8 +172,11 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-6S-mQf">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-6S-mQf">
                                                     <rect key="frame" x="263" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onSwitchValueChanged:" destination="8Fa-dd-v1D" eventType="valueChanged" id="cEE-4J-9xF"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -184,6 +187,10 @@
                                                 <constraint firstItem="LD8-4w-zf3" firstAttribute="centerY" secondItem="ixW-f5-FAp" secondAttribute="centerY" id="rCp-sa-Do3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="switchLabel" destination="LD8-4w-zf3" id="hWl-LQ-lyM"/>
+                                            <outlet property="switchToggle" destination="Xv6-6S-mQf" id="YJC-Al-jBc"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CheckmarkCell" id="ZCR-RK-Mox" customClass="CheckmarkCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="157.5" width="320" height="44"/>
@@ -214,6 +221,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="4y5-hb-WrR" secondAttribute="trailing" constant="8" id="oEy-t9-Ghu"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkmarkImage" destination="4y5-hb-WrR" id="CYX-kt-drh"/>
+                                            <outlet property="checkmarkLabel" destination="Yo2-gI-rmB" id="Bfv-4r-jjA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -230,13 +241,17 @@
                             <constraint firstItem="oMl-fn-Of6" firstAttribute="top" secondItem="RgY-yn-83D" secondAttribute="bottom" id="thc-Ih-Yw6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hRr-0j-K9E">
+                    <navigationItem key="navigationItem" title="Filters" id="hRr-0j-K9E">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="PlK-ze-AJE">
                             <connections>
-                                <action selector="didTapCancel:" destination="tAa-nE-tqk" id="APz-Dt-q2Q"/>
+                                <action selector="onCancelButton:" destination="tAa-nE-tqk" id="Tru-VI-6Ke"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="xxS-tr-XDg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="xxS-tr-XDg">
+                            <connections>
+                                <action selector="onSearchButton:" destination="tAa-nE-tqk" id="8oO-KA-yWZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="RgY-yn-83D" id="9ik-Se-ub3"/>

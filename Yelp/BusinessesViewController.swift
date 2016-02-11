@@ -11,7 +11,7 @@ import UIKit
 class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
     var businesses: [Business]!
-    var lastSearchTerm = ""
+    var lastSearchTerm = "Restaurants"
     var searchBar: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
@@ -33,29 +33,13 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Search
-    /*
-    Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-        self.businesses = businesses
-        self.tableView.reloadData()
-
-        for business in businesses {
-            print(business.name!)
-            print(business.address!)
-        }
-    })
-    */
-
-    /* Example of Yelp search with more search options specified
-    Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-        self.businesses = businesses
-
-        for business in businesses {
-            print(business.name!)
-            print(business.address!)
-        }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let filterViewController = navigationController.topViewController as! FilterViewController
+        filterViewController.delegate = self
     }
-    */
+
+    // MARK: - Search
 
     private func searchWithTerm(term: String) {
         Business.searchWithTerm(term, completion: { (businesses: [Business]!, error: NSError!) -> Void in
@@ -105,5 +89,20 @@ extension BusinessesViewController {
         let searchTerm = searchBar.text!
         lastSearchTerm = searchTerm
         searchWithTerm(searchTerm)
+    }
+}
+
+// MARK: - FilterViewControllerDelegate
+
+extension BusinessesViewController: FilterViewControllerDelegate {
+    func filterViewController(filterViewController: FilterViewController, diUpdateFilters filters: [String : AnyObject]) {
+        let deals = filters["deals"] as? Bool
+        print("Deals: \(deals)")
+        let categories = filters["categories"] as? [String]
+        print("Categories: \(categories)")
+        Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
+            self.businesses = businesses
+            self.tableView.reloadData()
+        }
     }
 }
