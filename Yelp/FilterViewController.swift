@@ -45,7 +45,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             return 4
         case 2:
             return 3
-        case 4:
+        case 3:
             return 10
         default:
             return 0
@@ -56,15 +56,29 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         var cell: UITableViewCell!
 
         switch indexPath.section {
-        case 0, 3:
+        case 0:
             cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
-        case 1, 2:
+        case 1:
             cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
+        case 2:
+            cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
+        case 3:
+            cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
         default:
             break
         }
 
         return cell
+
+
+//        if indexPath.section == 0 || indexPath.section == 3 {
+//            let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
+//            return cell
+//        } else {
+//            let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
+//            return cell
+//        }
+
     }
 
 }
