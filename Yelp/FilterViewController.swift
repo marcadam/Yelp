@@ -103,12 +103,12 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
             cell.checkmarkLabel.text = Filter.distance[indexPath.row]["name"]
-            cell.checkmarkImage.image = distanceRowStates[indexPath.row] ? UIImage(named: "CircleChecked") : UIImage(named: "CircleEmpty")
+            cell.checked = distanceRowStates[indexPath.row] ? true : false
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
             cell.checkmarkLabel.text = Filter.sortBy[indexPath.row]["name"]
-            cell.checkmarkImage.image = sortByRowStates[indexPath.row] ? UIImage(named: "CircleChecked") : UIImage(named: "CircleEmpty")
+            cell.checked = sortByRowStates[indexPath.row] ? true : false
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
@@ -122,7 +122,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
-            cell.checkmarkImage.image = UIImage(named: "CircleChecked")
+            cell.checked = true
             for row in 0..<Filter.distance.count {
                 distanceRowStates[row] = false
             }
@@ -133,7 +133,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
 
         if indexPath.section == 2 {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
-            cell.checkmarkImage.image = UIImage(named: "CircleChecked")
+            cell.checked = true
             for row in 0..<Filter.sortBy.count {
                 sortByRowStates[row] = false
             }

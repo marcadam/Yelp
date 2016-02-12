@@ -13,11 +13,20 @@ class CheckmarkCell: UITableViewCell {
     @IBOutlet weak var checkmarkLabel: UILabel!
     @IBOutlet weak var checkmarkImage: UIImageView!
 
+    let circleCheckedImage = UIImage(named: "CircleChecked")
+    let circleEmptyImage = UIImage(named: "CircleEmpty")
+
+    var checked: Bool = false {
+        didSet {
+            checkmarkImage.image = checked ? circleCheckedImage : circleEmptyImage
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
         // Initialization code
-        checkmarkImage.image = UIImage(named: "CircleEmpty")
+        checkmarkImage.image = circleEmptyImage
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
