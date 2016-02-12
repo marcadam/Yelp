@@ -158,9 +158,3 @@ extension FilterViewController: SwitchCellDelegate {
         }
     }
 }
-
-// MARK: - CheckmarkCellDelegate
-
-extension FilterViewController: CheckmarkCellDelegate {
-
-}

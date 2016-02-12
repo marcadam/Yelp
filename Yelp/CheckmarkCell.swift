@@ -8,16 +8,10 @@
 
 import UIKit
 
-@objc protocol CheckmarkCellDelegate {
-    optional func checkmarkCell(checkmarkCell: CheckmarkCell, didChangeValue value: Bool)
-}
-
 class CheckmarkCell: UITableViewCell {
 
     @IBOutlet weak var checkmarkLabel: UILabel!
     @IBOutlet weak var checkmarkImage: UIImageView!
-
-    weak var delegate: CheckmarkCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
