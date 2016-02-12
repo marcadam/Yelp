@@ -89,6 +89,7 @@ extension BusinessesViewController {
         let searchTerm = searchBar.text!
         lastSearchTerm = searchTerm
         searchWithTerm(searchTerm)
+        searchBar.resignFirstResponder()
     }
 }
 
@@ -104,7 +105,7 @@ extension BusinessesViewController: FilterViewControllerDelegate {
         print("Sort By: \(sortBy)")
         let categories = filters["categories"] as? [String]
         print("Categories: \(categories)")
-        Business.searchWithTerm("Restaurants", sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(lastSearchTerm, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
         }
