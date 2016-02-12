@@ -98,13 +98,13 @@ extension BusinessesViewController: FilterViewControllerDelegate {
     func filterViewController(filterViewController: FilterViewController, diUpdateFilters filters: [String : AnyObject]) {
         let deals = filters["deals"] as? Bool
         print("Deals: \(deals)")
-        let distance = filters["distance"] as? String
+        let distance = filters["distance"] as? Int
         print("Distance: \(distance)")
         let sortBy = filters["sortBy"] as? Int
         print("Sort By: \(sortBy)")
         let categories = filters["categories"] as? [String]
         print("Categories: \(categories)")
-        Business.searchWithTerm("Restaurants", sort: YelpSortMode(rawValue: sortBy!), categories: categories, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm("Restaurants", sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
         }

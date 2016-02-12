@@ -18,12 +18,12 @@ class Filter {
     ]
 
     // Distance is in meters
-    static let distance = [
-        ["name": "Best Match", "code": "---"],
-        ["name": "2 blocks", "code": "268"],
-        ["name": "6 blocks", "code": "805"],
-        ["name": "1 mile", "code": "1609"],
-        ["name": "5 miles", "code": "8047"],
+    static let distance: [[String: AnyObject]] = [
+        ["name": "Best Match", "code": 0],
+        ["name": "0.3 mile", "code": 483],
+        ["name": "0.5 mile", "code": 805],
+        ["name": "1 mile", "code": 1609],
+        ["name": "5 miles", "code": 8047],
     ]
 
     static let categories = [

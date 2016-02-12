@@ -102,7 +102,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
-            cell.checkmarkLabel.text = Filter.distance[indexPath.row]["name"]
+            cell.checkmarkLabel.text = Filter.distance[indexPath.row]["name"] as? String
             cell.checked = distanceRowStates[indexPath.row] ? true : false
             return cell
         } else if indexPath.section == 2 {
@@ -127,7 +127,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                 distanceRowStates[row] = false
             }
             distanceRowStates[indexPath.row] = true
-            distanceChoice = Filter.distance[indexPath.row]["code"]
+            distanceChoice = Filter.distance[indexPath.row]["code"] as? Int
             tableView.reloadData()
         }
 
