@@ -12,17 +12,18 @@ class Filter {
     static let sections = ["Deals", "Distance", "Sort By", "Category"]
 
     static let sortBy = [
-        ["name": "Best Matched", "code": "0"],
+        ["name": "Best Match", "code": "0"],
         ["name": "Distance", "code": "1"],
         ["name": "Highest Rated", "code": "2"],
     ]
 
     // Distance is in meters
     static let distance = [
-        ["name": "0.5 miles", "code": "805"],
+        ["name": "Best Match", "code": "---"],
+        ["name": "2 blocks", "code": "268"],
+        ["name": "6 blocks", "code": "805"],
         ["name": "1 mile", "code": "1609"],
         ["name": "5 miles", "code": "8047"],
-        ["name": "10 miles", "code": "16093"],
     ]
 
     static let categories = [

@@ -98,6 +98,10 @@ extension BusinessesViewController: FilterViewControllerDelegate {
     func filterViewController(filterViewController: FilterViewController, diUpdateFilters filters: [String : AnyObject]) {
         let deals = filters["deals"] as? Bool
         print("Deals: \(deals)")
+        let distance = filters["distance"] as? String
+        print("Distance: \(distance)")
+        let sortBy = filters["sortBy"] as? String
+        print("Sort By: \(sortBy)")
         let categories = filters["categories"] as? [String]
         print("Categories: \(categories)")
         Business.searchWithTerm("Restaurants", sort: nil, categories: categories, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in

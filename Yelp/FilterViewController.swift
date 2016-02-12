@@ -18,13 +18,19 @@ class FilterViewController: UIViewController {
 
     weak var delegate: FilterViewControllerDelegate?
     var filters = [String: AnyObject]()
-    var dealsSwitchState = false
+    var offeringDealChoice = false
+    var distanceChoice = Filter.distance[0]["code"]
+    var distanceRowStates = [Bool](count: Filter.distance.count, repeatedValue: false)
+    var sortByChoice = Filter.sortBy[0]["code"]
+    var sortByRowStates = [Bool](count: Filter.sortBy.count, repeatedValue: false)
     var categoriesSwitchStates = [Int: Bool]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        distanceRowStates[0] = true
+        sortByRowStates[0] = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +40,13 @@ class FilterViewController: UIViewController {
 
     @IBAction func onSearchButton(sender: UIBarButtonItem) {
         // Deals
-        filters["deals"] = dealsSwitchState
+        filters["deals"] = offeringDealChoice
+
+        // Distance
+        filters["distance"] = distanceChoice
+
+        // Sort By
+        filters["sortBy"] = sortByChoice
 
         // Categories
         var selectedCategories = [String]()
@@ -86,17 +98,17 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
             cell.delegate = self
             cell.switchLabel.text = "Offering a Deal"
-            cell.switchToggle.on = dealsSwitchState
+            cell.switchToggle.on = offeringDealChoice
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
-            cell.delegate = self
             cell.checkmarkLabel.text = Filter.distance[indexPath.row]["name"]
+            cell.checkmarkImage.image = distanceRowStates[indexPath.row] ? UIImage(named: "CircleChecked") : UIImage(named: "CircleEmpty")
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
-            cell.delegate = self
             cell.checkmarkLabel.text = Filter.sortBy[indexPath.row]["name"]
+            cell.checkmarkImage.image = sortByRowStates[indexPath.row] ? UIImage(named: "CircleChecked") : UIImage(named: "CircleEmpty")
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
@@ -104,6 +116,31 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             cell.switchLabel.text = Filter.categories[indexPath.row]["name"]
             cell.switchToggle.on = categoriesSwitchStates[indexPath.row] ?? false
             return cell
+        }
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
+            cell.checkmarkImage.image = UIImage(named: "CircleChecked")
+            for row in 0..<Filter.distance.count {
+                distanceRowStates[row] = false
+            }
+            distanceRowStates[indexPath.row] = true
+            distanceChoice = Filter.distance[indexPath.row]["code"]
+            tableView.reloadData()
+        }
+
+        if indexPath.section == 2 {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
+            cell.checkmarkImage.image = UIImage(named: "CircleChecked")
+            for row in 0..<Filter.sortBy.count {
+                sortByRowStates[row] = false
+            }
+            sortByRowStates[indexPath.row] = true
+            sortByChoice = Filter.sortBy[indexPath.row]["code"]
+            tableView.reloadData()
+
         }
     }
 }
@@ -115,7 +152,7 @@ extension FilterViewController: SwitchCellDelegate {
         let indexPath = tableView.indexPathForCell(switchCell)!
         switch indexPath.section {
         case 0:
-            dealsSwitchState = value
+            offeringDealChoice = value
         default:
             categoriesSwitchStates[indexPath.row] = value
         }

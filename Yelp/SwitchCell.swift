@@ -21,6 +21,7 @@ class SwitchCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
     }
 
@@ -31,7 +32,6 @@ class SwitchCell: UITableViewCell {
     }
 
     @IBAction func onSwitchValueChanged(sender: AnyObject) {
-        print("Switch value changed.")
         delegate?.switchCell?(self, didChangeValue: switchToggle.on)
     }
 }
