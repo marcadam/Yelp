@@ -37,13 +37,13 @@ class FilterViewController: UIViewController {
         filters["deals"] = dealsSwitchState
 
         // Categories
-        var categories = [String]()
-        for (index, state) in categoriesSwitchStates {
-            if state {
-                categories.append(Filter.categories[index]["code"]!)
+        var selectedCategories = [String]()
+        for (row, isSelected) in categoriesSwitchStates {
+            if isSelected {
+                selectedCategories.append(Filter.categories[row]["code"]!)
             }
         }
-        filters["categories"] = categories.count > 0 ? categories : nil
+        filters["categories"] = selectedCategories.count > 0 ? selectedCategories : nil
 
         delegate?.filterViewController?(self, diUpdateFilters: filters)
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
