@@ -21,7 +21,7 @@ class FilterViewController: UIViewController {
     var offeringDealChoice = false
     var distanceChoice = Filter.distance[0]["code"]
     var distanceRowStates = [Bool](count: Filter.distance.count, repeatedValue: false)
-    var sortByChoice = Filter.sortBy[0]["code"]
+    var sortByChoice = Filter.sortBy[0]["code"] as? Int
     var sortByRowStates = [Bool](count: Filter.sortBy.count, repeatedValue: false)
     var categoriesSwitchStates = [Int: Bool]()
 
@@ -107,7 +107,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
-            cell.checkmarkLabel.text = Filter.sortBy[indexPath.row]["name"]
+            cell.checkmarkLabel.text = Filter.sortBy[indexPath.row]["name"] as? String
             cell.checked = sortByRowStates[indexPath.row] ? true : false
             return cell
         } else {
@@ -138,7 +138,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                 sortByRowStates[row] = false
             }
             sortByRowStates[indexPath.row] = true
-            sortByChoice = Filter.sortBy[indexPath.row]["code"]
+            sortByChoice = Filter.sortBy[indexPath.row]["code"] as? Int
             tableView.reloadData()
 
         }

@@ -11,10 +11,10 @@ import Foundation
 class Filter {
     static let sections = ["Deals", "Distance", "Sort By", "Category"]
 
-    static let sortBy = [
-        ["name": "Best Match", "code": "0"],
-        ["name": "Distance", "code": "1"],
-        ["name": "Highest Rated", "code": "2"],
+    static let sortBy: [[String: AnyObject]] = [
+        ["name": "Best Match", "code": YelpSortMode.BestMatched.rawValue],
+        ["name": "Distance", "code": YelpSortMode.Distance.rawValue],
+        ["name": "Highest Rated", "code": YelpSortMode.HighestRated.rawValue],
     ]
 
     // Distance is in meters
