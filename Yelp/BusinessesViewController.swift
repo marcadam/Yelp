@@ -26,6 +26,9 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
+
+        searchWithTerm(lastSearchTerm)
+        searchBar.text = lastSearchTerm
     }
 
     override func didReceiveMemoryWarning() {
