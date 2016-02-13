@@ -12,11 +12,13 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
     var businesses: [Business]!
     var lastSearchTerm = "Restaurants"
+    var lastSearchFilters: [String: AnyObject]?
 
     let searchDefaultLimit = 20
     let searchDefaultOffset = 0
     var searchCurrentLimit = 20
     var searchCurrentOffset = 0
+    var isMoreDataLoading = false
 
     var searchBar: UISearchBar!
     
@@ -54,11 +56,6 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         Business.searchWithTerm(term, limit: limit, offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
-
-            for business in businesses {
-                print(business.name!)
-                print(business.address!)
-            }
         })
     }
 
@@ -70,6 +67,31 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         Business.searchWithTerm(lastSearchTerm, limit: limit, offset: offset, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
+        }
+    }
+
+    private func loadMoreData() {
+        searchCurrentOffset += searchDefaultLimit
+        if lastSearchFilters == nil {
+            Business.searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchCurrentOffset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+                self.isMoreDataLoading = false
+                for business in businesses {
+                    self.businesses.append(business)
+                }
+                self.tableView.reloadData()
+            })
+        } else {
+            let deals = lastSearchFilters!["deals"] as? Bool
+            let distance = lastSearchFilters!["distance"] as? Int
+            let sortBy = lastSearchFilters!["sortBy"] as? Int
+            let categories = lastSearchFilters!["categories"] as? [String]
+            Business.searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchCurrentOffset, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
+                self.isMoreDataLoading = false
+                for business in businesses {
+                    self.businesses.append(business)
+                }
+                self.tableView.reloadData()
+            }
         }
     }
 }
@@ -93,6 +115,23 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+extension BusinessesViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if !isMoreDataLoading {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isMoreDataLoading = true
+                loadMoreData()
+            }
+        }
+    }
+}
+
 // MARK: - UISearchBarDelegate
 
 extension BusinessesViewController {
@@ -109,6 +148,8 @@ extension BusinessesViewController {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         let searchTerm = searchBar.text!
         lastSearchTerm = searchTerm
+        lastSearchFilters = nil
+        searchCurrentOffset = searchDefaultOffset
         searchWithTerm(searchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset)
         searchBar.resignFirstResponder()
     }
@@ -118,6 +159,8 @@ extension BusinessesViewController {
 
 extension BusinessesViewController: FilterViewControllerDelegate {
     func filterViewController(filterViewController: FilterViewController, diUpdateFilters filters: [String: AnyObject]) {
+        lastSearchFilters = filters
+        searchCurrentOffset = searchDefaultOffset
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset, filters: filters)
     }
 }
