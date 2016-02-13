@@ -12,6 +12,12 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
     var businesses: [Business]!
     var lastSearchTerm = "Restaurants"
+
+    let searchDefaultLimit = 20
+    let searchDefaultOffset = 0
+    var searchCurrentLimit = 20
+    var searchCurrentOffset = 0
+
     var searchBar: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
@@ -27,7 +33,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
 
-        searchWithTerm(lastSearchTerm)
+        searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset)
         searchBar.text = lastSearchTerm
     }
 
@@ -44,8 +50,8 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
     // MARK: - Search
 
-    private func searchWithTerm(term: String) {
-        Business.searchWithTerm(term, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+    private func searchWithTerm(term: String, limit: Int?, offset: Int?) {
+        Business.searchWithTerm(term, limit: limit, offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
 
@@ -56,12 +62,12 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         })
     }
 
-    private func searchWithTerm(term: String, andFilters filters: [String: AnyObject]) {
+    private func searchWithTerm(term: String, limit: Int?, offset: Int?, filters: [String: AnyObject]) {
         let deals = filters["deals"] as? Bool
         let distance = filters["distance"] as? Int
         let sortBy = filters["sortBy"] as? Int
         let categories = filters["categories"] as? [String]
-        Business.searchWithTerm(lastSearchTerm, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(lastSearchTerm, limit: limit, offset: offset, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
         }
@@ -103,7 +109,7 @@ extension BusinessesViewController {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         let searchTerm = searchBar.text!
         lastSearchTerm = searchTerm
-        searchWithTerm(searchTerm)
+        searchWithTerm(searchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset)
         searchBar.resignFirstResponder()
     }
 }
@@ -112,6 +118,6 @@ extension BusinessesViewController {
 
 extension BusinessesViewController: FilterViewControllerDelegate {
     func filterViewController(filterViewController: FilterViewController, diUpdateFilters filters: [String: AnyObject]) {
-        searchWithTerm(lastSearchTerm, andFilters: filters)
+        searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset, filters: filters)
     }
 }
