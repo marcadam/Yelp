@@ -18,9 +18,10 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var ratingImageView: UIImageView!
 
+    var row: Int!
     var business: Business! {
         didSet {
-            nameLabel.text = business.name
+            nameLabel.text = "\(row + 1). " + business.name!
             distanceLabel.text = business.distance
             if let reviewsCount = business.reviewCount {
                 reviewsCountLabel.text = "\(reviewsCount) Reviews"

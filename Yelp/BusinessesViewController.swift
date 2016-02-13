@@ -69,6 +69,7 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell", forIndexPath: indexPath) as! BusinessCell
 
+        cell.row = indexPath.row
         cell.business = businesses[indexPath.row]
 
         return cell
