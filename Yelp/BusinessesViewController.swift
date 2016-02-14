@@ -25,11 +25,12 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
     var searchBar: UISearchBar!
 
-    enum ViewMode {
-        case Table, Map
+    enum ViewMode: String {
+        case List = "List"
+        case Map = "Map"
     }
 
-    var currentViewMode = ViewMode.Table
+    var currentViewMode = ViewMode.List
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
@@ -77,16 +78,16 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     }
 
     @IBAction func didToggleViewMode(sender: UIBarButtonItem) {
-        if currentViewMode == .Table {
+        if currentViewMode == .List {
             currentViewMode = .Map
             tableView.hidden = true
             mapView.hidden = false
-            sender.title = "Table"
+            sender.title = ViewMode.List.rawValue
         } else {
-            currentViewMode = .Table
+            currentViewMode = .List
             tableView.hidden = false
             mapView.hidden = true
-            sender.title = "Map"
+            sender.title = ViewMode.Map.rawValue
         }
     }
 
