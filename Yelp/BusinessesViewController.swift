@@ -19,6 +19,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     var searchCurrentLimit = 20
     var searchCurrentOffset = 0
     var isMoreDataLoading = false
+    var loadingMoreView: InfiniteScrollActivityView?
 
     var searchBar: UISearchBar!
     
@@ -35,6 +36,17 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
 
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.hidden = true
+        tableView.addSubview(loadingMoreView!)
+
+        var insets = tableView.contentInset;
+        insets.bottom += InfiniteScrollActivityView.defaultHeight;
+        tableView.contentInset = insets
+
+        // Run initial search
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset)
         searchBar.text = lastSearchTerm
     }
@@ -75,6 +87,10 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         if lastSearchFilters == nil {
             Business.searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchCurrentOffset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
                 self.isMoreDataLoading = false
+
+                // Stop the loading indicator
+                self.loadingMoreView!.stopAnimating()
+
                 for business in businesses {
                     self.businesses.append(business)
                 }
@@ -87,6 +103,10 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
             let categories = lastSearchFilters!["categories"] as? [String]
             Business.searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchCurrentOffset, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
                 self.isMoreDataLoading = false
+
+                // Stop the loading indicator
+                self.loadingMoreView!.stopAnimating()
+
                 for business in businesses {
                     self.businesses.append(business)
                 }
@@ -126,6 +146,12 @@ extension BusinessesViewController: UIScrollViewDelegate {
             // When the user has scrolled past the threshold, start requesting
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
                 isMoreDataLoading = true
+
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+
                 loadMoreData()
             }
         }
