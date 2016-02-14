@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
@@ -22,8 +24,15 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     var loadingMoreView: InfiniteScrollActivityView?
 
     var searchBar: UISearchBar!
-    
+
+    enum ViewMode {
+        case Table, Map
+    }
+
+    var currentViewMode = ViewMode.Table
+
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var mapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +58,11 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         // Run initial search
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset)
         searchBar.text = lastSearchTerm
+
+        // set the region to display, this also sets a correct zoom level
+        // set starting center location in San Francisco
+        let centerLocation = CLLocation(latitude: Constants.DefaultLocation.latitude, longitude: Constants.DefaultLocation.longitude)
+        goToLocation(centerLocation)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +76,20 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         filterViewController.delegate = self
     }
 
+    @IBAction func didToggleViewMode(sender: UIBarButtonItem) {
+        if currentViewMode == .Table {
+            currentViewMode = .Map
+            tableView.hidden = true
+            mapView.hidden = false
+            sender.title = "Table"
+        } else {
+            currentViewMode = .Table
+            tableView.hidden = false
+            mapView.hidden = true
+            sender.title = "Map"
+        }
+    }
+
     // MARK: - Search
 
     private func searchWithTerm(term: String, limit: Int?, offset: Int?) {
@@ -69,6 +97,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
             self.businesses = businesses
             self.tableView.reloadData()
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            self.addAnnotationForBusinesses(self.businesses)
         })
     }
 
@@ -81,6 +110,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
             self.businesses = businesses
             self.tableView.reloadData()
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            self.addAnnotationForBusinesses(self.businesses)
         }
     }
 
@@ -97,6 +127,8 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
                     self.businesses.append(business)
                 }
                 self.tableView.reloadData()
+
+                self.addAnnotationForBusinesses(self.businesses)
             })
         } else {
             let deals = lastSearchFilters!["deals"] as? Bool
@@ -113,10 +145,14 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
                     self.businesses.append(business)
                 }
                 self.tableView.reloadData()
+
+                self.addAnnotationForBusinesses(self.businesses)
             }
         }
     }
 }
+
+// MARK: - UITableViewDataSource/UITableViewDelegate
 
 extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,6 +172,8 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension BusinessesViewController: UIScrollViewDelegate {
 
@@ -190,5 +228,29 @@ extension BusinessesViewController: FilterViewControllerDelegate {
         lastSearchFilters = filters
         searchCurrentOffset = searchDefaultOffset
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset, filters: filters)
+    }
+}
+
+// MARK: - Map related methods
+
+extension BusinessesViewController {
+
+    private func goToLocation(location: CLLocation) {
+        let span = MKCoordinateSpanMake(0.1, 0.1)
+        let region = MKCoordinateRegionMake(location.coordinate, span)
+        mapView.setRegion(region, animated: false)
+    }
+
+    private func addAnnotationForBusinesses(businesses: [Business]) {
+        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
+        mapView.removeAnnotations(annotationsToRemove)
+
+        for business in businesses {
+            let coordinate = CLLocationCoordinate2D(latitude: business.coordinate.latitude!, longitude: business.coordinate.longitude!)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = business.name
+            mapView.addAnnotation(annotation)
+        }
     }
 }

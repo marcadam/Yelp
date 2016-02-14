@@ -119,6 +119,12 @@
                                     <outlet property="delegate" destination="2xI-yr-O5N" id="1Ra-WI-b6g"/>
                                 </connections>
                             </tableView>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RwN-d9-Qfj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2xI-yr-O5N" id="mPa-P5-bKj"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -134,8 +140,14 @@
                                 <segue destination="xpm-I4-Tgl" kind="modal" identifier="" id="ed9-7C-grl"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="map" id="B5S-AG-cqV">
+                            <connections>
+                                <action selector="didToggleViewMode:" destination="2xI-yr-O5N" id="s3j-gF-XvH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapView" destination="RwN-d9-Qfj" id="0vm-Ch-ULs"/>
                         <outlet property="tableView" destination="SKj-dl-EkL" id="Yrg-TX-5iA"/>
                     </connections>
                 </viewController>
