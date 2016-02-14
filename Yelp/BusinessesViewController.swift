@@ -252,5 +252,16 @@ extension BusinessesViewController {
             annotation.title = business.name
             mapView.addAnnotation(annotation)
         }
+
+        zoomMapToFitAnnotationsForBusiness(businesses)
+    }
+
+    private func zoomMapToFitAnnotationsForBusiness(businesses: [Business]) {
+        let rectToDisplay = self.businesses.reduce(MKMapRectNull) { (mapRect: MKMapRect, business: Business) -> MKMapRect in
+            let coordinate = CLLocationCoordinate2D(latitude: business.coordinate.latitude!, longitude: business.coordinate.longitude!)
+            let businessPointRect = MKMapRect(origin: MKMapPointForCoordinate(coordinate), size: MKMapSize(width: 0, height: 0))
+            return MKMapRectUnion(mapRect, businessPointRect)
+        }
+        self.mapView.setVisibleMapRect(rectToDisplay, edgePadding: UIEdgeInsetsMake(74, 10, 10, 10), animated: false)
     }
 }
