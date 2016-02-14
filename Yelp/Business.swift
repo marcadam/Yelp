@@ -16,9 +16,9 @@ class Business: NSObject {
     let distance: String?
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
-    var coordinates = Coordinates()
+    var coordinate = Coordinate()
 
-    struct Coordinates {
+    struct Coordinate {
         var latitude: Double?
         var longitude: Double?
     }
@@ -51,10 +51,10 @@ class Business: NSObject {
 
             if let coordinatesDictionary = location!["coordinate"] as? NSDictionary {
                 if let latitude = coordinatesDictionary["latitude"] as? Double {
-                    coordinates.latitude = latitude
+                    coordinate.latitude = latitude
                 }
                 if let longitude = coordinatesDictionary["longitude"] as? Double {
-                    coordinates.longitude = longitude
+                    coordinate.longitude = longitude
                 }
             }
         }
