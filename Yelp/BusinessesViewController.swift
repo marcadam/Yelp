@@ -97,7 +97,10 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         Business.searchWithTerm(term, limit: limit, offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
+            if businesses.count > 0 {
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            }
             self.addAnnotationForBusinesses(self.businesses)
         })
     }
@@ -110,7 +113,10 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         Business.searchWithTerm(lastSearchTerm, limit: limit, offset: offset, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             self.tableView.reloadData()
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
+            if businesses.count > 0 {
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            }
             self.addAnnotationForBusinesses(self.businesses)
         }
     }
