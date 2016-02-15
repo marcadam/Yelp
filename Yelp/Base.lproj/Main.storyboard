@@ -119,7 +119,7 @@
                                     <outlet property="delegate" destination="2xI-yr-O5N" id="1Ra-WI-b6g"/>
                                 </connections>
                             </tableView>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RwN-d9-Qfj">
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RwN-d9-Qfj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="2xI-yr-O5N" id="mPa-P5-bKj"/>
@@ -128,6 +128,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RwN-d9-Qfj" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" id="Mxw-mz-Fwk"/>
+                            <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="RwN-d9-Qfj" secondAttribute="bottom" id="Tq5-I8-7lD"/>
+                            <constraint firstAttribute="trailing" secondItem="RwN-d9-Qfj" secondAttribute="trailing" id="Z0G-P8-nKz"/>
+                            <constraint firstItem="RwN-d9-Qfj" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="eo1-Lb-IJO"/>
                             <constraint firstAttribute="trailing" secondItem="SKj-dl-EkL" secondAttribute="trailing" id="g4d-4s-rlv"/>
                             <constraint firstItem="SKj-dl-EkL" firstAttribute="top" secondItem="XhR-oz-92f" secondAttribute="top" id="vOK-4h-D6e"/>
                             <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="SKj-dl-EkL" secondAttribute="bottom" id="vij-z3-6jY"/>
