@@ -17,9 +17,16 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     weak var delegate: FilterViewControllerDelegate?
+
+    enum SectionDisplayMode {
+        case Expanded, Collapsed
+    }
+
     var filters = [String: AnyObject]()
     var offeringDealChoice = false
-    var distanceChoice = Filter.distance[0]["code"]
+    var distanceDisplayMode = SectionDisplayMode.Collapsed
+    var distanceChoice = Filter.distance[0]
+    var distanceRowData = [Filter.distance[0]]
     var distanceRowStates = [Bool](count: Filter.distance.count, repeatedValue: false)
     var sortByChoice = Filter.sortBy[0]["code"] as? Int
     var sortByRowStates = [Bool](count: Filter.sortBy.count, repeatedValue: false)
@@ -43,7 +50,7 @@ class FilterViewController: UIViewController {
         filters["deals"] = offeringDealChoice
 
         // Distance
-        filters["distance"] = distanceChoice
+        filters["distance"] = distanceChoice["code"] as? Int
 
         // Sort By
         filters["sortBy"] = sortByChoice
@@ -82,7 +89,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return 1
         case 1:
-            return Filter.distance.count
+            return distanceRowData.count
         case 2:
             return Filter.sortBy.count
         case 3:
@@ -102,13 +109,20 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
-            cell.checkmarkLabel.text = Filter.distance[indexPath.row]["name"] as? String
-            cell.checked = distanceRowStates[indexPath.row] ? true : false
+            cell.checkmarkLabel.text = distanceRowData[indexPath.row]["name"] as? String
+
+            if distanceDisplayMode == .Collapsed {
+                cell.state = .Collapsed
+            } else {
+                cell.state = distanceRowStates[indexPath.row] ? .Checked : .Unchecked
+            }
+
             return cell
+
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
             cell.checkmarkLabel.text = Filter.sortBy[indexPath.row]["name"] as? String
-            cell.checked = sortByRowStates[indexPath.row] ? true : false
+            cell.state = sortByRowStates[indexPath.row] ? .Checked : .Unchecked
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
@@ -121,26 +135,50 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
-            cell.checked = true
-            for row in 0..<Filter.distance.count {
-                distanceRowStates[row] = false
+            if distanceDisplayMode == .Collapsed {
+                distanceDisplayMode = .Expanded
+
+                distanceRowData = Filter.distance
+                var indexPaths = [NSIndexPath]()
+                for row in 0..<distanceRowData.count {
+                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                }
+
+                tableView.beginUpdates()
+                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
+                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+                tableView.endUpdates()
+            } else {
+                distanceDisplayMode = .Collapsed
+
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
+                cell.state = .Checked
+
+                var indexPaths = [NSIndexPath]()
+                for row in 0..<distanceRowData.count {
+                    distanceRowStates[row] = false
+                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                }
+                distanceRowStates[indexPath.row] = true
+                distanceChoice = distanceRowData[indexPath.row]
+                distanceRowData = [distanceChoice]
+
+                tableView.beginUpdates()
+                tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
+                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Bottom)
+                tableView.endUpdates()
             }
-            distanceRowStates[indexPath.row] = true
-            distanceChoice = Filter.distance[indexPath.row]["code"] as? Int
-            tableView.reloadData()
         }
 
         if indexPath.section == 2 {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
-            cell.checked = true
+            cell.state = .Checked
             for row in 0..<Filter.sortBy.count {
                 sortByRowStates[row] = false
             }
             sortByRowStates[indexPath.row] = true
             sortByChoice = Filter.sortBy[indexPath.row]["code"] as? Int
             tableView.reloadData()
-
         }
     }
 }

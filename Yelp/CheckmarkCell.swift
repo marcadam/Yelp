@@ -13,12 +13,24 @@ class CheckmarkCell: UITableViewCell {
     @IBOutlet weak var checkmarkLabel: UILabel!
     @IBOutlet weak var checkmarkImage: UIImageView!
 
-    let circleCheckedImage = UIImage(named: "CircleChecked")
-    let circleEmptyImage = UIImage(named: "CircleEmpty")
+    let cellStateCheckedImage = UIImage(named: "CircleChecked")
+    let cellStateUncheckedImage = UIImage(named: "CircleEmpty")
+    let cellStateCollapsedImage = UIImage(named: "ExpandArrow")
 
-    var checked: Bool = false {
+    enum CellState {
+        case Checked, Unchecked, Collapsed
+    }
+
+    var state: CellState = CellState.Collapsed {
         didSet {
-            checkmarkImage.image = checked ? circleCheckedImage : circleEmptyImage
+            switch state {
+            case .Checked:
+                checkmarkImage.image = cellStateCheckedImage
+            case .Unchecked:
+                checkmarkImage.image = cellStateUncheckedImage
+            case .Collapsed:
+                checkmarkImage.image = cellStateCollapsedImage
+            }
         }
     }
 
@@ -26,7 +38,7 @@ class CheckmarkCell: UITableViewCell {
         super.awakeFromNib()
 
         // Initialization code
-        checkmarkImage.image = circleEmptyImage
+        checkmarkImage.image = cellStateUncheckedImage
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
