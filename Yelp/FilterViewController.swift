@@ -23,13 +23,19 @@ class FilterViewController: UIViewController {
     }
 
     var filters = [String: AnyObject]()
+
     var offeringDealChoice = false
+
     var distanceDisplayMode = SectionDisplayMode.Collapsed
     var distanceChoice = Filter.distance[0]
     var distanceRowData = [Filter.distance[0]]
     var distanceRowStates = [Bool](count: Filter.distance.count, repeatedValue: false)
-    var sortByChoice = Filter.sortBy[0]["code"] as? Int
+
+    var sortByDisplayMode = SectionDisplayMode.Collapsed
+    var sortByChoice = Filter.sortBy[0]
+    var sortByRowData = [Filter.sortBy[0]]
     var sortByRowStates = [Bool](count: Filter.sortBy.count, repeatedValue: false)
+
     var categoriesSwitchStates = [Int: Bool]()
 
     override func viewDidLoad() {
@@ -53,7 +59,7 @@ class FilterViewController: UIViewController {
         filters["distance"] = distanceChoice["code"] as? Int
 
         // Sort By
-        filters["sortBy"] = sortByChoice
+        filters["sortBy"] = sortByChoice["code"] as? Int
 
         // Categories
         var selectedCategories = [String]()
@@ -91,7 +97,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             return distanceRowData.count
         case 2:
-            return Filter.sortBy.count
+            return sortByRowData.count
         case 3:
             return Filter.categories.count
         default:
@@ -116,13 +122,15 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 cell.state = distanceRowStates[indexPath.row] ? .Checked : .Unchecked
             }
-
             return cell
-
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
-            cell.checkmarkLabel.text = Filter.sortBy[indexPath.row]["name"] as? String
-            cell.state = sortByRowStates[indexPath.row] ? .Checked : .Unchecked
+            cell.checkmarkLabel.text = sortByRowData[indexPath.row]["name"] as? String
+            if sortByDisplayMode == .Collapsed {
+                cell.state = .Collapsed
+            } else {
+                cell.state = sortByRowStates[indexPath.row] ? .Checked : .Unchecked
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
@@ -159,6 +167,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                     distanceRowStates[row] = false
                     indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
                 }
+
                 distanceRowStates[indexPath.row] = true
                 distanceChoice = distanceRowData[indexPath.row]
                 distanceRowData = [distanceChoice]
@@ -171,14 +180,40 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         if indexPath.section == 2 {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
-            cell.state = .Checked
-            for row in 0..<Filter.sortBy.count {
-                sortByRowStates[row] = false
+            if sortByDisplayMode == .Collapsed {
+                sortByDisplayMode = .Expanded
+
+                sortByRowData = Filter.sortBy
+                var indexPaths = [NSIndexPath]()
+                for row in 0..<sortByRowData.count {
+                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                }
+
+                tableView.beginUpdates()
+                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .None)
+                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+                tableView.endUpdates()
+            } else {
+                sortByDisplayMode = .Collapsed
+
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
+                cell.state = .Checked
+
+                var indexPaths = [NSIndexPath]()
+                for row in 0..<sortByRowData.count {
+                    sortByRowStates[row] = false
+                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                }
+
+                sortByRowStates[indexPath.row] = true
+                sortByChoice = sortByRowData[indexPath.row]
+                sortByRowData = [sortByChoice]
+
+                tableView.beginUpdates()
+                tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
+                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Bottom)
+                tableView.endUpdates()
             }
-            sortByRowStates[indexPath.row] = true
-            sortByChoice = Filter.sortBy[indexPath.row]["code"] as? Int
-            tableView.reloadData()
         }
     }
 }
