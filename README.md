@@ -2,7 +2,7 @@
 
 Yelp is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: **X** hours spent in total
+Time spent: 27 hours spent in total
 
 ## User Stories
 
@@ -35,6 +35,7 @@ The following **additional** features are implemented:
 - [x] Sort by filter should expand as in the real Yelp app
 - [x] Map view zooms to fit business annotations
 - [x] Scroll to top of list after new search or filtering results
+- [x] Created all icons myself! :)
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -45,7 +46,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-[Video Walk-through](walkthrough_file.gif)
+[Video Walk-through](yelp_walkthrough.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
