@@ -36,6 +36,8 @@ class FilterViewController: UIViewController {
     var sortByRowData = [Filter.sortBy[0]]
     var sortByRowStates = [Bool](count: Filter.sortBy.count, repeatedValue: false)
 
+    var categoriesDisplayMode = SectionDisplayMode.Collapsed
+    var categoriesRowData = [Filter.categories[0], Filter.categories[1], Filter.categories[2], ["name": "Show All", "code": "show_all"]]
     var categoriesSwitchStates = [Int: Bool]()
 
     override func viewDidLoad() {
@@ -99,7 +101,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         case 2:
             return sortByRowData.count
         case 3:
-            return Filter.categories.count
+            return categoriesRowData.count
         default:
             return 0
         }
@@ -133,11 +135,16 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             }
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
-            cell.delegate = self
-            cell.switchLabel.text = Filter.categories[indexPath.row]["name"]
-            cell.switchToggle.on = categoriesSwitchStates[indexPath.row] ?? false
-            return cell
+            if categoriesDisplayMode == .Collapsed && indexPath.row == categoriesRowData.count - 1 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("ShowAllCell") as! ShowAllCell
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
+                cell.delegate = self
+                cell.switchLabel.text = Filter.categories[indexPath.row]["name"]
+                cell.switchToggle.on = categoriesSwitchStates[indexPath.row] ?? false
+                return cell
+            }
         }
     }
 
@@ -215,6 +222,24 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                 tableView.endUpdates()
             }
         }
+
+        if indexPath.section == 3 && categoriesDisplayMode == .Collapsed && indexPath.row == categoriesRowData.count - 1 {
+            categoriesDisplayMode = .Expanded
+
+            let startRow = categoriesRowData.count - 1
+            categoriesRowData = Filter.categories
+
+            var indexPaths = [NSIndexPath]()
+            for row in startRow..<categoriesRowData.count {
+                indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+            }
+
+            tableView.beginUpdates()
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: startRow, inSection: indexPath.section)], withRowAnimation: .None)
+            tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+            tableView.endUpdates()
+        }
+
     }
 }
 
