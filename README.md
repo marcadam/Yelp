@@ -37,21 +37,22 @@ The following **additional** features are implemented:
 - [x] Scroll to top of list after new search or filtering results
 - [x] Created all icons myself! :)
 
-Additional things I would liek to have done if I hade more time:
+Additional things I would like to have done if I had more time:
 
 - Add an empty state screen for when you first launch and when there are no results.
-- Annimate between the tabel and map views
+- Animate between the table and map views
 - Save and populate filters unless a new search term was entered.
 - Loading indicator displayed while fetching results.
+- Code refactoring.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Best way to implement expanding/collapsing table view sections.
+2. Best practices for app architecture.
 
-## Video Walkthrough
+## Video Walk-through
 
-Here's a walkthrough of implemented user stories:
+Here's a walk-through of implemented user stories:
 
 ![Video Walk-through](yelp_walkthrough.gif)
 
