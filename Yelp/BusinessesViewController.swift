@@ -159,7 +159,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     }
 }
 
-// MARK: - UITableViewDataSource/UITableViewDelegate
+// MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -173,6 +173,16 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell", forIndexPath: indexPath) as! BusinessCell
 
+        // Reset content to defaults
+        cell.nameLabel.text = nil
+        cell.distanceLabel.text = nil
+        cell.reviewsCountLabel.text = nil
+        cell.addressLabel.text = nil
+        cell.categoriesLabel.text = nil
+        cell.thumbImageView.image = nil
+        cell.ratingImageView.image = nil
+
+        // Set new content
         cell.row = indexPath.row
         cell.business = businesses[indexPath.row]
 
