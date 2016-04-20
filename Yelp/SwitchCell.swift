@@ -3,7 +3,7 @@
 //  Yelp
 //
 //  Created by Marc Anderson on 2/10/16.
-//  Copyright © 2016 Timothy Lee. All rights reserved.
+//  Copyright © 2016 Marc Anderson. All rights reserved.
 //
 
 import UIKit
