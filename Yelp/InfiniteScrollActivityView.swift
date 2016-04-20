@@ -2,8 +2,8 @@
 //  InfiniteScrollActivityView.swift
 //  Yelp
 //
-//  Created by Marc Anderson on 2/13/16.
-//  Copyright © 2016 Marc Anderson. All rights reserved.
+//  Created by Marc Adam Anderson on 2/13/16.
+//  Copyright © 2016 Marc Adam Anderson. All rights reserved.
 //
 
 import UIKit
