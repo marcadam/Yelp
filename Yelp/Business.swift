@@ -9,6 +9,7 @@
 import UIKit
 
 class Business: NSObject {
+    let yelpID: String?
     let name: String?
     let address: String?
     let imageURL: NSURL?
@@ -24,6 +25,7 @@ class Business: NSObject {
     }
     
     init(dictionary: NSDictionary) {
+        yelpID = dictionary["id"] as? String
         name = dictionary["name"] as? String
         
         let imageURLString = dictionary["image_url"] as? String

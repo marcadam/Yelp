@@ -18,6 +18,8 @@
 		4951E1E31C6B0F7600E7BE0F /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951E1E21C6B0F7600E7BE0F /* BusinessCell.swift */; };
 		4956DB581C71730F0009FA5D /* ShowAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4956DB571C71730F0009FA5D /* ShowAllCell.swift */; };
 		4973CDB11CC712BB0089A9EF /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4973CDAF1CC712BB0089A9EF /* Filters.storyboard */; };
+		4973CDD21CCEDE3C0089A9EF /* BusinessDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4973CDD11CCEDE3B0089A9EF /* BusinessDetail.storyboard */; };
+		4973CDD51CCEDF690089A9EF /* BusinessDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4973CDD41CCEDF690089A9EF /* BusinessDetailViewController.swift */; };
 		4977E24E1C6BC680002C56C3 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E24D1C6BC680002C56C3 /* FilterViewController.swift */; };
 		4977E2501C6C05D0002C56C3 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E24F1C6C05D0002C56C3 /* Filter.swift */; };
 		4977E2541C6C0D28002C56C3 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E2531C6C0D28002C56C3 /* SwitchCell.swift */; };
@@ -53,6 +55,8 @@
 		4951E1E21C6B0F7600E7BE0F /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		4956DB571C71730F0009FA5D /* ShowAllCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAllCell.swift; sourceTree = "<group>"; };
 		4973CDB01CC712BB0089A9EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filters.storyboard; sourceTree = "<group>"; };
+		4973CDD11CCEDE3B0089A9EF /* BusinessDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessDetail.storyboard; sourceTree = "<group>"; };
+		4973CDD41CCEDF690089A9EF /* BusinessDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailViewController.swift; sourceTree = "<group>"; };
 		4977E24D1C6BC680002C56C3 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4977E24F1C6C05D0002C56C3 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		4977E2531C6C0D28002C56C3 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				4951E1E11C6B0F2000E7BE0F /* Businesses */,
+				4973CDD31CCEDEA10089A9EF /* Business Detail */,
 				22AAAA9D1AEA1EC600A544AF /* Filters */,
 				222D8A7A19CCFAAA00D2DB53 /* API */,
 				22AAAA9A1AEA0AA100A544AF /* Models */,
@@ -190,6 +195,15 @@
 				49EDBC741C7031990031662E /* Constants.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		4973CDD31CCEDEA10089A9EF /* Business Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4973CDD11CCEDE3B0089A9EF /* BusinessDetail.storyboard */,
+				4973CDD41CCEDF690089A9EF /* BusinessDetailViewController.swift */,
+			);
+			name = "Business Detail";
 			sourceTree = "<group>";
 		};
 		4A7CA25ACD374CA0AC966A24 /* Frameworks */ = {
@@ -295,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4973CDD21CCEDE3C0089A9EF /* BusinessDetail.storyboard in Resources */,
 				222D8A6019CCF9F900D2DB53 /* Main.storyboard in Resources */,
 				222D8A6519CCF9F900D2DB53 /* LaunchScreen.xib in Resources */,
 				4973CDB11CC712BB0089A9EF /* Filters.storyboard in Resources */,
@@ -365,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49EDBC731C70001A0031662E /* InfiniteScrollActivityView.swift in Sources */,
+				4973CDD51CCEDF690089A9EF /* BusinessDetailViewController.swift in Sources */,
 				49EDBC751C7031990031662E /* Constants.swift in Sources */,
 				4977E2501C6C05D0002C56C3 /* Filter.swift in Sources */,
 				4977E24E1C6BC680002C56C3 /* FilterViewController.swift in Sources */,

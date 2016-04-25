@@ -72,9 +72,15 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let navigationController = segue.destinationViewController as! UINavigationController
-        let filterViewController = navigationController.topViewController as! FilterViewController
-        filterViewController.delegate = self
+        if segue.identifier == "FiltersSegue" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let filterViewController = navigationController.topViewController as! FilterViewController
+            filterViewController.delegate = self
+        } else if segue.identifier == "BusinessDetailSegue" {
+            let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)!
+            let businessDetailVC = segue.destinationViewController as! BusinessDetailViewController
+            businessDetailVC.business = businesses[indexPath.row]
+        }
     }
 
     @IBAction func didToggleViewMode(sender: UIBarButtonItem) {
