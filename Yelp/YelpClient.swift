@@ -88,9 +88,27 @@ class YelpClient: BDBOAuth1RequestOperationManager {
             "search",
             parameters: parameters,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                let dictionaries = response["businesses"] as? [NSDictionary]
-                if dictionaries != nil {
-                    completion(Business.businesses(array: dictionaries!), nil)
+                if let dictionaries = response["businesses"] as? [NSDictionary] {
+                    completion(Business.businesses(array: dictionaries), nil)
+                }
+            },
+            failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
+                completion(nil, error)
+            }
+        )!
+    }
+
+    func getBusiness(yelpID: String, completion: (Business!, NSError!) -> Void) -> AFHTTPRequestOperation {
+        let encodedYelpID = yelpID.stringByAddingPercentEncodingWithAllowedCharacters(.URLPathAllowedCharacterSet())!
+        let endpointName = "business/" + encodedYelpID
+
+        return self.GET(
+            endpointName,
+            parameters: nil,
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                print(response)
+                if let dictionary = response as? NSDictionary {
+                    completion(Business(dictionary: dictionary), nil)
                 }
             },
             failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
