@@ -24,6 +24,7 @@
 		4977E2501C6C05D0002C56C3 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E24F1C6C05D0002C56C3 /* Filter.swift */; };
 		4977E2541C6C0D28002C56C3 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E2531C6C0D28002C56C3 /* SwitchCell.swift */; };
 		4977E2561C6C0D60002C56C3 /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4977E2551C6C0D60002C56C3 /* CheckmarkCell.swift */; };
+		49C4E74A1CE5A341008BDC4F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4E7491CE5A341008BDC4F /* Theme.swift */; };
 		49EDBC731C70001A0031662E /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EDBC721C70001A0031662E /* InfiniteScrollActivityView.swift */; };
 		49EDBC751C7031990031662E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EDBC741C7031990031662E /* Constants.swift */; };
 		90B718C590BD546DEFEF0D61 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3C5CF4FD317D72ABE2AAC4 /* Pods.framework */; };
@@ -61,6 +62,7 @@
 		4977E24F1C6C05D0002C56C3 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		4977E2531C6C0D28002C56C3 /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		4977E2551C6C0D60002C56C3 /* CheckmarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckmarkCell.swift; sourceTree = "<group>"; };
+		49C4E7491CE5A341008BDC4F /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		49EDBC721C70001A0031662E /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		49EDBC741C7031990031662E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		97D8B2E3FFD1AF4F4A707E47 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				49EDBC741C7031990031662E /* Constants.swift */,
+				49C4E7491CE5A341008BDC4F /* Theme.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				222D8A5B19CCF9F900D2DB53 /* AppDelegate.swift in Sources */,
 				4956DB581C71730F0009FA5D /* ShowAllCell.swift in Sources */,
 				4977E2561C6C0D60002C56C3 /* CheckmarkCell.swift in Sources */,
+				49C4E74A1CE5A341008BDC4F /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
