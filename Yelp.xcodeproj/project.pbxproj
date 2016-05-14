@@ -15,6 +15,8 @@
 		222D8A7D19CCFAE000D2DB53 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D8A7C19CCFAE000D2DB53 /* YelpClient.swift */; };
 		22AAAA991AEA0A9700A544AF /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA981AEA0A9700A544AF /* Business.swift */; };
 		22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */; };
+		493295741CE6B2170002A18C /* BusinessDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493295731CE6B2170002A18C /* BusinessDetailsView.xib */; };
+		493295761CE6B2EF0002A18C /* BusinessDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493295751CE6B2EF0002A18C /* BusinessDetailsView.swift */; };
 		4951E1E31C6B0F7600E7BE0F /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951E1E21C6B0F7600E7BE0F /* BusinessCell.swift */; };
 		4956DB581C71730F0009FA5D /* ShowAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4956DB571C71730F0009FA5D /* ShowAllCell.swift */; };
 		4973CDB11CC712BB0089A9EF /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4973CDAF1CC712BB0089A9EF /* Filters.storyboard */; };
@@ -53,6 +55,8 @@
 		222D8A7C19CCFAE000D2DB53 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		22AAAA981AEA0A9700A544AF /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
+		493295731CE6B2170002A18C /* BusinessDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessDetailsView.xib; sourceTree = "<group>"; };
+		493295751CE6B2EF0002A18C /* BusinessDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailsView.swift; sourceTree = "<group>"; };
 		4951E1E21C6B0F7600E7BE0F /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		4956DB571C71730F0009FA5D /* ShowAllCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAllCell.swift; sourceTree = "<group>"; };
 		4973CDB01CC712BB0089A9EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filters.storyboard; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 			children = (
 				4973CDD11CCEDE3B0089A9EF /* BusinessDetail.storyboard */,
 				4973CDD41CCEDF690089A9EF /* BusinessDetailViewController.swift */,
+				493295731CE6B2170002A18C /* BusinessDetailsView.xib */,
+				493295751CE6B2EF0002A18C /* BusinessDetailsView.swift */,
 			);
 			name = "Business Detail";
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4973CDD21CCEDE3C0089A9EF /* BusinessDetail.storyboard in Resources */,
+				493295741CE6B2170002A18C /* BusinessDetailsView.xib in Resources */,
 				222D8A6019CCF9F900D2DB53 /* Main.storyboard in Resources */,
 				222D8A6519CCF9F900D2DB53 /* LaunchScreen.xib in Resources */,
 				4973CDB11CC712BB0089A9EF /* Filters.storyboard in Resources */,
@@ -385,6 +392,7 @@
 				49EDBC731C70001A0031662E /* InfiniteScrollActivityView.swift in Sources */,
 				4973CDD51CCEDF690089A9EF /* BusinessDetailViewController.swift in Sources */,
 				49EDBC751C7031990031662E /* Constants.swift in Sources */,
+				493295761CE6B2EF0002A18C /* BusinessDetailsView.swift in Sources */,
 				4977E2501C6C05D0002C56C3 /* Filter.swift in Sources */,
 				4977E24E1C6BC680002C56C3 /* FilterViewController.swift in Sources */,
 				4951E1E31C6B0F7600E7BE0F /* BusinessCell.swift in Sources */,
@@ -480,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -516,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -532,6 +540,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Yelp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcadam.Yelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -550,6 +559,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Yelp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcadam.Yelp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

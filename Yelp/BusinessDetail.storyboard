@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Business Detail View Controller-->
@@ -14,10 +15,45 @@
                         <viewControllerLayoutGuide type="bottom" id="029-u7-loZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1ii-Zd-d5U">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xLl-uf-eHt">
+                                <rect key="frame" x="0.0" y="-125" width="320" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="y9I-QM-rcl"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wT2-ve-aKd" userLabel="Alpha View">
+                                <rect key="frame" x="0.0" y="-125" width="320" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pwq-xg-lwy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="h5C-g8-Rt2" customClass="BusinessDetailsView" customModule="Yelp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pwq-xg-lwy" firstAttribute="leading" secondItem="1ii-Zd-d5U" secondAttribute="leading" id="5gy-vM-axe"/>
+                            <constraint firstItem="wT2-ve-aKd" firstAttribute="centerY" secondItem="xLl-uf-eHt" secondAttribute="centerY" id="CrZ-N5-ePr"/>
+                            <constraint firstItem="wT2-ve-aKd" firstAttribute="centerX" secondItem="xLl-uf-eHt" secondAttribute="centerX" id="Fpn-oS-Vzv"/>
+                            <constraint firstItem="pwq-xg-lwy" firstAttribute="top" secondItem="L3k-xG-FaN" secondAttribute="bottom" id="TeR-Sf-xkd"/>
+                            <constraint firstItem="029-u7-loZ" firstAttribute="top" secondItem="pwq-xg-lwy" secondAttribute="bottom" id="UH8-aI-1mF"/>
+                            <constraint firstAttribute="trailing" secondItem="xLl-uf-eHt" secondAttribute="trailing" id="apv-zG-Q1d"/>
+                            <constraint firstItem="wT2-ve-aKd" firstAttribute="width" secondItem="xLl-uf-eHt" secondAttribute="width" id="dve-lW-RcC"/>
+                            <constraint firstItem="xLl-uf-eHt" firstAttribute="top" secondItem="1ii-Zd-d5U" secondAttribute="topMargin" constant="-125" id="om1-mN-5pI"/>
+                            <constraint firstItem="xLl-uf-eHt" firstAttribute="leading" secondItem="1ii-Zd-d5U" secondAttribute="leading" id="qjN-aL-dqu"/>
+                            <constraint firstAttribute="trailing" secondItem="pwq-xg-lwy" secondAttribute="trailing" id="ruE-2y-I0p"/>
+                            <constraint firstItem="wT2-ve-aKd" firstAttribute="height" secondItem="xLl-uf-eHt" secondAttribute="height" id="xZg-Wt-5uK"/>
+                        </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ly0-22-TA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
