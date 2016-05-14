@@ -19,19 +19,29 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZ2-q1-fTj" userLabel="Actions Container View">
                     <rect key="frame" x="0.0" y="130" width="320" height="85"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-AM-iHm" userLabel="Horizontal Rule">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-AM-iHm" userLabel="Horizontal Rule Top">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="5Uh-HR-xNI"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYG-b0-rEN" userLabel="Horizontal Rule Bottom">
+                            <rect key="frame" x="0.0" y="84" width="320" height="1"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="uZz-zM-VBc"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="MYG-b0-rEN" secondAttribute="bottom" id="Dlp-3q-r2A"/>
                         <constraint firstItem="gj0-AM-iHm" firstAttribute="top" secondItem="wZ2-q1-fTj" secondAttribute="top" id="G0N-ud-box"/>
                         <constraint firstAttribute="height" constant="85" id="LAC-ah-Te7"/>
                         <constraint firstAttribute="trailing" secondItem="gj0-AM-iHm" secondAttribute="trailing" id="N7v-gQ-unf"/>
+                        <constraint firstAttribute="trailing" secondItem="MYG-b0-rEN" secondAttribute="trailing" id="Szc-Ll-mVs"/>
+                        <constraint firstItem="MYG-b0-rEN" firstAttribute="leading" secondItem="wZ2-q1-fTj" secondAttribute="leading" id="cxI-g3-sFP"/>
                         <constraint firstItem="gj0-AM-iHm" firstAttribute="leading" secondItem="wZ2-q1-fTj" secondAttribute="leading" id="uOY-HP-3G5"/>
                     </constraints>
                 </view>
