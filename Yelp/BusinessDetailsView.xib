@@ -32,9 +32,28 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vU4-Mt-ANt" userLabel="Left Action Container">
                                     <rect key="frame" x="0.0" y="8" width="106" height="44"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="UnT-fJ-QU8">
+                                            <rect key="frame" x="41" y="0.0" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="2f9-k5-HMa"/>
+                                                <constraint firstAttribute="height" constant="24" id="col-zv-2o3"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0s-ND-YrP">
+                                            <rect key="frame" x="22" y="29" width="62" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="UnT-fJ-QU8" firstAttribute="top" secondItem="vU4-Mt-ANt" secondAttribute="top" id="fFa-aE-xjz"/>
+                                        <constraint firstItem="p0s-ND-YrP" firstAttribute="centerX" secondItem="vU4-Mt-ANt" secondAttribute="centerX" id="fl5-28-gzV"/>
                                         <constraint firstAttribute="height" constant="44" id="pFR-c6-8d5"/>
+                                        <constraint firstItem="UnT-fJ-QU8" firstAttribute="centerX" secondItem="vU4-Mt-ANt" secondAttribute="centerX" id="s0f-kT-vXT"/>
+                                        <constraint firstAttribute="bottom" secondItem="p0s-ND-YrP" secondAttribute="bottom" id="vQs-He-Iuc"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpb-Gh-ChH" userLabel="Left Vertical Rule">
@@ -47,9 +66,28 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwj-X6-7Xj" userLabel="Center Action Container">
                                     <rect key="frame" x="107" y="8" width="106" height="44"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckIn" translatesAutoresizingMaskIntoConstraints="NO" id="ONh-g2-vei">
+                                            <rect key="frame" x="41" y="0.0" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="1dh-Jo-3Q1"/>
+                                                <constraint firstAttribute="width" constant="24" id="547-1l-aFg"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdX-av-HDo">
+                                            <rect key="frame" x="27" y="29" width="52" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="4jq-Gh-eXl"/>
+                                        <constraint firstItem="ONh-g2-vei" firstAttribute="top" secondItem="mwj-X6-7Xj" secondAttribute="top" id="EnT-ZT-j7T"/>
+                                        <constraint firstItem="ONh-g2-vei" firstAttribute="centerX" secondItem="mwj-X6-7Xj" secondAttribute="centerX" id="MOi-ma-w6w"/>
+                                        <constraint firstItem="DdX-av-HDo" firstAttribute="centerX" secondItem="mwj-X6-7Xj" secondAttribute="centerX" id="OMd-Fo-dzO"/>
+                                        <constraint firstAttribute="bottom" secondItem="DdX-av-HDo" secondAttribute="bottom" id="wac-AH-KJe"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-8p-FSd" userLabel="Right Vertical Rule">
@@ -62,9 +100,28 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeJ-RP-OdN" userLabel="Right Action Container">
                                     <rect key="frame" x="214" y="8" width="106" height="44"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="lAX-cc-Xwe">
+                                            <rect key="frame" x="45" y="0.0" width="17" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="17" id="2nn-q4-cuB"/>
+                                                <constraint firstAttribute="height" constant="24" id="u2w-PH-Fsk"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bookmark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4C-It-zcU">
+                                            <rect key="frame" x="23" y="29" width="60" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="lAX-cc-Xwe" firstAttribute="top" secondItem="VeJ-RP-OdN" secondAttribute="top" id="1Wc-ai-vZQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="h4C-It-zcU" secondAttribute="bottom" id="Os1-jK-MVE"/>
                                         <constraint firstAttribute="height" constant="44" id="fNJ-JX-xPZ"/>
+                                        <constraint firstItem="h4C-It-zcU" firstAttribute="centerX" secondItem="VeJ-RP-OdN" secondAttribute="centerX" id="mtK-r8-qGd"/>
+                                        <constraint firstItem="lAX-cc-Xwe" firstAttribute="centerX" secondItem="VeJ-RP-OdN" secondAttribute="centerX" id="ukJ-Cv-0Wl"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -119,12 +176,12 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write a Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9Y-Uf-43n">
-                            <rect key="frame" x="99" y="14" width="114" height="20"/>
+                            <rect key="frame" x="99" y="14" width="112" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="114" id="H5E-7e-ODD"/>
+                                <constraint firstAttribute="width" constant="112" id="H5E-7e-ODD"/>
                                 <constraint firstAttribute="height" constant="20" id="luK-NL-nZH"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -149,7 +206,7 @@
                         <constraint firstItem="Jek-pq-iG6" firstAttribute="leading" secondItem="f3q-Yu-ByB" secondAttribute="trailing" id="9H4-5w-tDe"/>
                         <constraint firstAttribute="trailing" secondItem="hoc-Pn-Dy2" secondAttribute="trailing" id="CaY-Dh-43E"/>
                         <constraint firstAttribute="height" constant="49" id="FZx-Lh-oqi"/>
-                        <constraint firstItem="hoc-Pn-Dy2" firstAttribute="leading" secondItem="w9Y-Uf-43n" secondAttribute="trailing" id="WSZ-2i-ftm"/>
+                        <constraint firstItem="hoc-Pn-Dy2" firstAttribute="leading" secondItem="w9Y-Uf-43n" secondAttribute="trailing" constant="2" id="WSZ-2i-ftm"/>
                         <constraint firstItem="f3q-Yu-ByB" firstAttribute="leading" secondItem="F40-7b-KcV" secondAttribute="leading" id="a7L-NJ-kkH"/>
                         <constraint firstItem="hoc-Pn-Dy2" firstAttribute="centerY" secondItem="F40-7b-KcV" secondAttribute="centerY" id="hnW-ck-VK3"/>
                         <constraint firstItem="f3q-Yu-ByB" firstAttribute="centerY" secondItem="F40-7b-KcV" secondAttribute="centerY" id="kFQ-Tv-7Jx"/>
@@ -172,6 +229,9 @@
         </view>
     </objects>
     <resources>
+        <image name="Bookmark" width="17" height="24"/>
+        <image name="Camera" width="24" height="24"/>
+        <image name="CheckIn" width="24" height="24"/>
         <image name="Review" width="20" height="20"/>
     </resources>
 </document>
