@@ -215,6 +215,22 @@
                         <constraint firstItem="Jek-pq-iG6" firstAttribute="centerY" secondItem="F40-7b-KcV" secondAttribute="centerY" id="wFQ-lT-RFR"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVn-2T-GnQ">
+                    <rect key="frame" x="14" y="10" width="230" height="31"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255.4 mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sc0-GB-3bN">
+                    <rect key="frame" x="252" y="10" width="56" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="NAz-5N-udr"/>
+                        <constraint firstAttribute="width" constant="56" id="yYm-9A-bzE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
@@ -222,9 +238,18 @@
                 <constraint firstItem="wZ2-q1-fTj" firstAttribute="top" secondItem="F40-7b-KcV" secondAttribute="top" constant="24" id="Erg-XL-0TV"/>
                 <constraint firstAttribute="trailing" secondItem="F40-7b-KcV" secondAttribute="trailing" constant="20" id="FBw-Az-5N2"/>
                 <constraint firstItem="F40-7b-KcV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="G6S-pd-js3"/>
+                <constraint firstItem="EVn-2T-GnQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="HLa-HR-pQR"/>
+                <constraint firstItem="Sc0-GB-3bN" firstAttribute="leading" secondItem="EVn-2T-GnQ" secondAttribute="trailing" constant="8" id="TTr-YT-Efb"/>
                 <constraint firstAttribute="bottom" secondItem="wZ2-q1-fTj" secondAttribute="bottom" id="TXP-zq-s0A"/>
+                <constraint firstAttribute="trailing" secondItem="Sc0-GB-3bN" secondAttribute="trailing" constant="12" id="YsS-UG-znp"/>
                 <constraint firstItem="wZ2-q1-fTj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="c1B-YC-Kcr"/>
+                <constraint firstItem="Sc0-GB-3bN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="jkk-WT-PcV"/>
+                <constraint firstItem="EVn-2T-GnQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="roH-nm-XEH"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
