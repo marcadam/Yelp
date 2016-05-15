@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BusinessDetailsView" customModule="Yelp" customModuleProvider="target">
@@ -16,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZ2-q1-fTj" userLabel="Actions Container View">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZ2-q1-fTj" userLabel="Bottom Opaque View">
                     <rect key="frame" x="0.0" y="130" width="320" height="85"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-AM-iHm" userLabel="Horizontal Rule Top">
@@ -24,6 +25,65 @@
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="5Uh-HR-xNI"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKj-Ni-Ley" userLabel="Actions Container View">
+                            <rect key="frame" x="0.0" y="25" width="320" height="60"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vU4-Mt-ANt" userLabel="Left Action Container">
+                                    <rect key="frame" x="0.0" y="8" width="106" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="pFR-c6-8d5"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpb-Gh-ChH" userLabel="Left Vertical Rule">
+                                    <rect key="frame" x="106" y="8" width="1" height="44"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="QpT-ZY-t8E"/>
+                                        <constraint firstAttribute="width" constant="1" id="na2-8d-kqv"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwj-X6-7Xj" userLabel="Center Action Container">
+                                    <rect key="frame" x="107" y="8" width="106" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="4jq-Gh-eXl"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-8p-FSd" userLabel="Right Vertical Rule">
+                                    <rect key="frame" x="213" y="8" width="1" height="44"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="h8R-9I-CAF"/>
+                                        <constraint firstAttribute="height" constant="44" id="wCj-w0-blN"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeJ-RP-OdN" userLabel="Right Action Container">
+                                    <rect key="frame" x="214" y="8" width="106" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="fNJ-JX-xPZ"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="mwj-X6-7Xj" firstAttribute="width" secondItem="lKj-Ni-Ley" secondAttribute="width" multiplier="0.33" id="Bju-47-VVG"/>
+                                <constraint firstItem="VeJ-RP-OdN" firstAttribute="leading" secondItem="NT1-8p-FSd" secondAttribute="trailing" id="FkO-rI-qTE"/>
+                                <constraint firstItem="vU4-Mt-ANt" firstAttribute="centerY" secondItem="lKj-Ni-Ley" secondAttribute="centerY" id="KjH-2g-qSA"/>
+                                <constraint firstItem="Qpb-Gh-ChH" firstAttribute="leading" secondItem="vU4-Mt-ANt" secondAttribute="trailing" id="MwH-QI-vM9"/>
+                                <constraint firstAttribute="trailing" secondItem="VeJ-RP-OdN" secondAttribute="trailing" id="Q5a-bE-KIc"/>
+                                <constraint firstItem="NT1-8p-FSd" firstAttribute="leading" secondItem="mwj-X6-7Xj" secondAttribute="trailing" id="a6K-q7-JTu"/>
+                                <constraint firstItem="VeJ-RP-OdN" firstAttribute="centerY" secondItem="lKj-Ni-Ley" secondAttribute="centerY" id="duX-0y-crd"/>
+                                <constraint firstItem="NT1-8p-FSd" firstAttribute="centerY" secondItem="lKj-Ni-Ley" secondAttribute="centerY" id="eTZ-au-Xa2"/>
+                                <constraint firstItem="mwj-X6-7Xj" firstAttribute="leading" secondItem="Qpb-Gh-ChH" secondAttribute="trailing" id="ezc-NM-bmb"/>
+                                <constraint firstAttribute="height" constant="60" id="fdH-xn-k63"/>
+                                <constraint firstItem="Qpb-Gh-ChH" firstAttribute="centerY" secondItem="lKj-Ni-Ley" secondAttribute="centerY" id="hRC-rs-uq0"/>
+                                <constraint firstItem="mwj-X6-7Xj" firstAttribute="centerY" secondItem="lKj-Ni-Ley" secondAttribute="centerY" id="mEE-3S-pKf"/>
+                                <constraint firstItem="vU4-Mt-ANt" firstAttribute="leading" secondItem="lKj-Ni-Ley" secondAttribute="leading" id="rrv-Ys-hOb"/>
+                                <constraint firstItem="mwj-X6-7Xj" firstAttribute="centerX" secondItem="lKj-Ni-Ley" secondAttribute="centerX" id="wfh-Uz-9XO"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYG-b0-rEN" userLabel="Horizontal Rule Bottom">
@@ -38,10 +98,13 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="MYG-b0-rEN" secondAttribute="bottom" id="Dlp-3q-r2A"/>
                         <constraint firstItem="gj0-AM-iHm" firstAttribute="top" secondItem="wZ2-q1-fTj" secondAttribute="top" id="G0N-ud-box"/>
+                        <constraint firstAttribute="bottom" secondItem="lKj-Ni-Ley" secondAttribute="bottom" id="Gc3-dS-G6U"/>
                         <constraint firstAttribute="height" constant="85" id="LAC-ah-Te7"/>
                         <constraint firstAttribute="trailing" secondItem="gj0-AM-iHm" secondAttribute="trailing" id="N7v-gQ-unf"/>
                         <constraint firstAttribute="trailing" secondItem="MYG-b0-rEN" secondAttribute="trailing" id="Szc-Ll-mVs"/>
+                        <constraint firstItem="lKj-Ni-Ley" firstAttribute="leading" secondItem="wZ2-q1-fTj" secondAttribute="leading" id="bmA-lm-t8S"/>
                         <constraint firstItem="MYG-b0-rEN" firstAttribute="leading" secondItem="wZ2-q1-fTj" secondAttribute="leading" id="cxI-g3-sFP"/>
+                        <constraint firstAttribute="trailing" secondItem="lKj-Ni-Ley" secondAttribute="trailing" id="iSc-lX-5DP"/>
                         <constraint firstItem="gj0-AM-iHm" firstAttribute="leading" secondItem="wZ2-q1-fTj" secondAttribute="leading" id="uOY-HP-3G5"/>
                     </constraints>
                 </view>
@@ -73,7 +136,7 @@
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoc-Pn-Dy2" userLabel="Spacer View">
-                            <rect key="frame" x="213" y="14.5" width="67" height="20"/>
+                            <rect key="frame" x="213" y="14" width="67" height="20"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="xbc-vc-jlS"/>
