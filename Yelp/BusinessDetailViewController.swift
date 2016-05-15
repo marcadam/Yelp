@@ -63,6 +63,7 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
 
         cell?.textLabel?.text = "Some label"
         cell?.detailTextLabel?.text = "Details and details"
+        cell?.accessoryType = .DisclosureIndicator
         return cell!
     }
 }
