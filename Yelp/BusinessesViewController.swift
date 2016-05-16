@@ -38,6 +38,8 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Search", style: .Plain, target: nil, action: nil)
+
         searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.sizeToFit()
