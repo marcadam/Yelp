@@ -229,7 +229,6 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255.4 mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sc0-GB-3bN">
                     <rect key="frame" x="250" y="13" width="56" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="7WV-VV-5iw"/>
                         <constraint firstAttribute="width" constant="56" id="QNg-l5-puT"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -246,9 +245,6 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="246 Reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ar-ES-LNy">
                     <rect key="frame" x="105" y="46" width="201" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="fej-Of-JKA"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -257,7 +253,6 @@
                     <rect key="frame" x="250" y="31" width="56" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="56" id="hYs-4F-SoX"/>
-                        <constraint firstAttribute="height" constant="15" id="mVL-s1-M1x"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -265,18 +260,12 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee &amp; Tea, Cafes, Bakeries" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmx-q6-bbs">
                     <rect key="frame" x="14" y="64" width="292" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="Mq1-jg-bBd"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours Today: 7:00 AM - 6:00 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcC-ZZ-D7A">
                     <rect key="frame" x="14" y="82" width="228" height="15"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="xnr-5R-0P2"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -285,7 +274,6 @@
                     <rect key="frame" x="250" y="82" width="56" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="56" id="2T6-fT-Xir"/>
-                        <constraint firstAttribute="height" constant="15" id="M8g-Yu-Nz3"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
