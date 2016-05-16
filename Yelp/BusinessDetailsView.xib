@@ -15,6 +15,10 @@
                 <outlet property="ratingImageView" destination="swP-Yw-qY5" id="cS7-UY-iIg"/>
                 <outlet property="reviewsCountLabel" destination="0Ar-ES-LNy" id="mtR-aN-Uo7"/>
                 <outlet property="writeReviewContainerView" destination="F40-7b-KcV" id="DHF-ow-ACt"/>
+                <outletCollection property="dividerViews" destination="gj0-AM-iHm" collectionClass="NSMutableArray" id="Crk-mO-XBX"/>
+                <outletCollection property="dividerViews" destination="MYG-b0-rEN" collectionClass="NSMutableArray" id="OL1-Sb-dpm"/>
+                <outletCollection property="dividerViews" destination="Qpb-Gh-ChH" collectionClass="NSMutableArray" id="tTH-Tg-ibY"/>
+                <outletCollection property="dividerViews" destination="NT1-8p-FSd" collectionClass="NSMutableArray" id="J4j-Ri-NP1"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,7 +29,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZ2-q1-fTj" userLabel="Bottom Opaque View">
                     <rect key="frame" x="0.0" y="130" width="320" height="85"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-AM-iHm" userLabel="Horizontal Rule Top">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-AM-iHm" userLabel="Horizontal Divider Top">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -61,7 +65,7 @@
                                         <constraint firstAttribute="bottom" secondItem="p0s-ND-YrP" secondAttribute="bottom" id="vQs-He-Iuc"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpb-Gh-ChH" userLabel="Left Vertical Rule">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpb-Gh-ChH" userLabel="Left Vertical Divider">
                                     <rect key="frame" x="106" y="8" width="1" height="44"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -95,7 +99,7 @@
                                         <constraint firstAttribute="bottom" secondItem="DdX-av-HDo" secondAttribute="bottom" id="wac-AH-KJe"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-8p-FSd" userLabel="Right Vertical Rule">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-8p-FSd" userLabel="Right Vertical Divider">
                                     <rect key="frame" x="213" y="8" width="1" height="44"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -148,7 +152,7 @@
                                 <constraint firstItem="mwj-X6-7Xj" firstAttribute="centerX" secondItem="lKj-Ni-Ley" secondAttribute="centerX" id="wfh-Uz-9XO"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYG-b0-rEN" userLabel="Horizontal Rule Bottom">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYG-b0-rEN" userLabel="Horizontal Divider Bottom">
                             <rect key="frame" x="0.0" y="84" width="320" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
