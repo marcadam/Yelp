@@ -15,6 +15,7 @@ class BusinessDetailsView: UIView {
     @IBOutlet weak var reviewsCountLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
+    @IBOutlet var dividerViews: [UIView]!
 
     @IBOutlet weak var writeReviewContainerView: UIView!
     @IBOutlet weak var actionsContainerView: UIView!
@@ -51,10 +52,14 @@ class BusinessDetailsView: UIView {
         // custom initialization logic
         writeReviewContainerView.layer.cornerRadius = 5.0
         writeReviewContainerView.layer.borderWidth = 1.0
-        writeReviewContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        writeReviewContainerView.layer.borderColor = UIColor.yelpTableAccentColor().CGColor
         writeReviewContainerView.backgroundColor = UIColor.yelpExtraLightBackgroundColor()
 
         actionsContainerView.backgroundColor = UIColor.yelpExtraLightBackgroundColor()
+
+        for divider in dividerViews {
+            divider.backgroundColor = UIColor.yelpTableAccentColor()
+        }
     }
 
 }
