@@ -26,7 +26,9 @@ class BusinessDetailsView: UIView {
         didSet {
             nameLabel.text = business.name
             distanceLabel.text = business.distance
-            reviewsCountLabel.text = "\(business.reviewCount) Reviews"
+            if let reviewCount = business.reviewCount {
+                reviewsCountLabel.text = "\(reviewCount) Reviews"
+            }
             categoriesLabel.text = business.categories
             ratingImageView.setImageWithURL(business.ratingImageURL!)
         }
