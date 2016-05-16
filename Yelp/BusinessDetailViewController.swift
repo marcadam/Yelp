@@ -22,7 +22,28 @@ class BusinessDetailViewController: UIViewController {
             getBusiness(yelpID)
         }
 
-        tableView.tableHeaderView = BusinessDetailsView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 215))
+        let tableHeaderView = BusinessDetailsView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 215))
+        tableHeaderView.business = business
+        tableView.tableHeaderView = tableHeaderView
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeHeaderToFit()
+    }
+
+    func sizeHeaderToFit() {
+        let headerView = tableView.tableHeaderView!
+
+        headerView.setNeedsLayout()
+        headerView.layoutIfNeeded()
+
+        let height = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        var frame = headerView.frame
+        frame.size.height = height
+        headerView.frame = frame
+
+        tableView.tableHeaderView = headerView
     }
 
     override func didReceiveMemoryWarning() {

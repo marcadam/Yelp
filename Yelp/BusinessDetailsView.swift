@@ -10,10 +10,25 @@ import UIKit
 
 class BusinessDetailsView: UIView {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var reviewsCountLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var ratingImageView: UIImageView!
+
     @IBOutlet weak var writeReviewContainerView: UIView!
     @IBOutlet weak var actionsContainerView: UIView!
 
     @IBOutlet var contentView: UIView!
+
+    var business: Business! {
+        didSet {
+//            nameLabel.text = business.name
+            nameLabel.text = "My Super Cool and Very Long Business Name"
+            categoriesLabel.text = "Some very very long list of categories that should wrap and push the table header down."
+        }
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
