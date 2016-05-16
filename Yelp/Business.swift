@@ -18,6 +18,7 @@ class Business: NSObject {
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
     var coordinate = Coordinate()
+    var imageLargeURL: NSURL?
 
     struct Coordinate {
         var latitude: Double?
@@ -31,8 +32,10 @@ class Business: NSObject {
         let imageURLString = dictionary["image_url"] as? String
         if imageURLString != nil {
             imageURL = NSURL(string: imageURLString!)!
+            imageLargeURL = NSURL(fileURLWithPath: "l.jpg", relativeToURL: imageURL!.URLByDeletingLastPathComponent)
         } else {
             imageURL = nil
+            imageLargeURL = nil
         }
         
         let location = dictionary["location"] as? NSDictionary

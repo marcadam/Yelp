@@ -10,6 +10,9 @@ import UIKit
 
 class BusinessDetailViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var alphaView: UIView!
+
     @IBOutlet weak var tableView: UITableView!
 
     var business: Business!
@@ -20,6 +23,11 @@ class BusinessDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let yelpID = business.yelpID {
             getBusiness(yelpID)
+        }
+
+        print("Large Image URL: \(business.imageLargeURL?.absoluteString)")
+        if let imageLargeURL = business.imageLargeURL {
+            imageView.setImageWithURL(imageLargeURL)
         }
 
         let tableHeaderView = BusinessDetailsView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 215))
@@ -53,7 +61,7 @@ class BusinessDetailViewController: UIViewController {
     
     private func getBusiness(yelpID: String) {
         Business.getBusiness(business.yelpID!) { (business: Business!, error: NSError!) -> Void in
-            print("Business: \(business)")
+//            print("Business: \(business)")
         }
     }
 }
