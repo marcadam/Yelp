@@ -25,7 +25,6 @@ class BusinessDetailViewController: UIViewController {
             getBusiness(yelpID)
         }
 
-        print("Large Image URL: \(business.imageLargeURL?.absoluteString)")
         if let imageLargeURL = business.imageLargeURL {
             imageView.setImageWithURL(imageLargeURL)
         }
@@ -81,6 +80,18 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = UIColor.lightGrayColor()
+        return header
+    }
+
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = UIColor.lightGrayColor()
+        return header
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
