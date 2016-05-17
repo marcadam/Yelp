@@ -120,13 +120,12 @@ extension BusinessDetailViewController: UIScrollViewDelegate {
         let scrollOffsetY = scrollView.contentOffset.y
 
         if scrollOffsetY <= scrollOffsetLimitY {
-            print("Pop images VC")
-//            let storyboard = UIStoryboard(name: "Images", bundle: nil)
-//            let imagesNC = storyboard.instantiateViewControllerWithIdentifier("ImagesNavigationController") as! UINavigationController
-//            let imagesVC = imagesNC.topViewController as! ImagesViewController
-//            imagesVC.imageName = "sunpillar"
-//
-//            presentViewController(imagesNC, animated: false, completion: nil)
+            let storyboard = UIStoryboard(name: "BusinessPhotos", bundle: nil)
+            let businessPhotosNC = storyboard.instantiateViewControllerWithIdentifier("BusinessPhotosNavigationController") as! UINavigationController
+            let businessPhotosVC = businessPhotosNC.topViewController as! BusinessPhotosViewController
+            businessPhotosVC.imageLargeURL = business.imageLargeURL
+
+            presentViewController(businessPhotosNC, animated: false, completion: nil)
         } else if scrollOffsetY < 0 {
             let alpha = alphaViewDefaultAlpha + (scrollOffsetY / 70)
             alphaView.alpha = alpha
