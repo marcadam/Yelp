@@ -40,6 +40,12 @@ class BusinessDetailViewController: UIViewController {
         tableView.tableHeaderView = tableHeaderView
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        alphaView.alpha = alphaViewDefaultAlpha
+        (tableView.tableHeaderView as! BusinessDetailsView).topContainerView.alpha = 1
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sizeHeaderToFit()
