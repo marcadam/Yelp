@@ -12,10 +12,14 @@ class BusinessDetailViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var alphaView: UIView!
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var tableView: UITableView!
 
     var business: Business!
+
+    let alphaViewDefaultAlpha = CGFloat(0.9)
+    var scrollViewLastOffsetY = CGFloat(0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,8 @@ class BusinessDetailViewController: UIViewController {
         if let imageLargeURL = business.imageLargeURL {
             imageView.setImageWithURL(imageLargeURL)
         }
+
+        alphaView.alpha = alphaViewDefaultAlpha
 
         let tableHeaderView = BusinessDetailsView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 215))
         tableHeaderView.business = business
@@ -105,5 +111,29 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
         cell?.detailTextLabel?.text = "Details and details"
         cell?.accessoryType = .DisclosureIndicator
         return cell!
+    }
+}
+
+extension BusinessDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let scrollOffsetLimitY = CGFloat(-130)
+        let scrollOffsetY = scrollView.contentOffset.y
+
+        if scrollOffsetY <= scrollOffsetLimitY {
+            print("Pop images VC")
+//            let storyboard = UIStoryboard(name: "Images", bundle: nil)
+//            let imagesNC = storyboard.instantiateViewControllerWithIdentifier("ImagesNavigationController") as! UINavigationController
+//            let imagesVC = imagesNC.topViewController as! ImagesViewController
+//            imagesVC.imageName = "sunpillar"
+//
+//            presentViewController(imagesNC, animated: false, completion: nil)
+        } else if scrollOffsetY < 0 {
+            let alpha = alphaViewDefaultAlpha + (scrollOffsetY / 70)
+            alphaView.alpha = alpha
+            (tableView.tableHeaderView as! BusinessDetailsView).topContainerView.alpha = alpha
+
+            imageViewTopConstraint.constant -= ((scrollOffsetY - scrollViewLastOffsetY) / 3)
+            scrollViewLastOffsetY = scrollOffsetY
+        }
     }
 }
