@@ -113,9 +113,22 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: reuseID)
         }
 
-        cell?.textLabel?.text = "Some label"
-        cell?.detailTextLabel?.text = "Details and details"
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                cell?.imageView?.image = UIImage(named: "Truck")
+                cell?.textLabel?.text = "Order Pickup"
+            } else if indexPath.row == 1 {
+                cell?.imageView?.image = UIImage(named: "Blowhorn")
+                cell?.textLabel?.text = "Call Now"
+                cell?.detailTextLabel?.text = "Let us cater your next event!"
+            }
+        } else {
+            cell?.textLabel?.text = "Some label"
+            cell?.detailTextLabel?.text = "Details and details"
+        }
+
         cell?.accessoryType = .DisclosureIndicator
+
         return cell!
     }
 }
