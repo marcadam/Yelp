@@ -132,9 +132,11 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                 if indexPath.row == 0 {
                     cell?.imageView?.image = UIImage(named: "Truck")
                     cell?.textLabel?.text = "Order Pickup"
+                    cell?.textLabel?.textColor = UIColor.yelpBlue()
                 } else if indexPath.row == 1 {
                     cell?.imageView?.image = UIImage(named: "Blowhorn")
                     cell?.textLabel?.text = "Call Now"
+                    cell?.textLabel?.textColor = UIColor.yelpOrange()
                     cell?.detailTextLabel?.text = "Let us cater your next event!"
                 }
             } else {
@@ -143,6 +145,10 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
             }
             cell?.accessoryType = .DisclosureIndicator
         }
+
+        cell?.textLabel?.font = UIFont.boldSystemFontOfSize(15)
+        cell?.detailTextLabel?.font = UIFont.systemFontOfSize(11)
+        cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
 
         // Ensure the cell separators go all the way to the edges for the map/address section.
         if indexPath.section == 1 {
