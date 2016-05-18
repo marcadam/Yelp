@@ -106,28 +106,50 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
         return header
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let reuseID = "SubtitleCell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(reuseID)
-        if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: reuseID)
-        }
-
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                cell?.imageView?.image = UIImage(named: "Truck")
-                cell?.textLabel?.text = "Order Pickup"
-            } else if indexPath.row == 1 {
-                cell?.imageView?.image = UIImage(named: "Blowhorn")
-                cell?.textLabel?.text = "Call Now"
-                cell?.detailTextLabel?.text = "Let us cater your next event!"
-            }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            // MapCell height
+            return 100
         } else {
-            cell?.textLabel?.text = "Some label"
-            cell?.detailTextLabel?.text = "Details and details"
+            // All other cells use standard height
+            return 44
+        }
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: UITableViewCell?
+
+        if indexPath.section == 1 && indexPath.row == 0 {
+            cell = tableView.dequeueReusableCellWithIdentifier("MapCell")
+        } else {
+            let reuseID = "SubtitleCell"
+            cell = tableView.dequeueReusableCellWithIdentifier(reuseID)
+            if cell == nil {
+                cell = UITableViewCell(style: .Subtitle, reuseIdentifier: reuseID)
+            }
+
+            if indexPath.section == 0 {
+                if indexPath.row == 0 {
+                    cell?.imageView?.image = UIImage(named: "Truck")
+                    cell?.textLabel?.text = "Order Pickup"
+                } else if indexPath.row == 1 {
+                    cell?.imageView?.image = UIImage(named: "Blowhorn")
+                    cell?.textLabel?.text = "Call Now"
+                    cell?.detailTextLabel?.text = "Let us cater your next event!"
+                }
+            } else {
+                cell?.textLabel?.text = "Some label"
+                cell?.detailTextLabel?.text = "Details and details"
+            }
+            cell?.accessoryType = .DisclosureIndicator
         }
 
-        cell?.accessoryType = .DisclosureIndicator
+        // Ensure the cell separators go all the way to the edges for the map/address section.
+        if indexPath.section == 1 {
+            cell!.preservesSuperviewLayoutMargins = false
+            cell!.layoutMargins = UIEdgeInsetsZero
+            cell!.separatorInset = UIEdgeInsetsZero
+        }
 
         return cell!
     }
