@@ -28,15 +28,15 @@ extension UIColor {
         return UIColor(red: 247.0/255.0, green: 144.0/255.0, blue: 0, alpha: 1.0)
     }
 
-    class func yelpExtraLightBackgroundColor() -> UIColor {
+    class func yelpExtraLightBackground() -> UIColor {
         return UIColor(red: 254.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1.0)
     }
 
-    class func yelpTableHeaderFooterColor() -> UIColor {
+    class func yelpTableHeaderFooter() -> UIColor {
         return UIColor(red: 246.0/255.0, green: 245.0/255.0, blue: 242.0/255.0, alpha: 1.0)
     }
 
-    class func yelpTableAccentColor() -> UIColor {
+    class func yelpTableAccent() -> UIColor {
         return UIColor(red: 230.0/255.0, green: 228.0/255.0, blue: 226.0/255.0, alpha: 1.0)
     }
 }

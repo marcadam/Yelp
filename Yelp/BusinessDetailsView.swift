@@ -56,13 +56,13 @@ class BusinessDetailsView: UIView {
         // custom initialization logic
         writeReviewContainerView.layer.cornerRadius = 5.0
         writeReviewContainerView.layer.borderWidth = 1.0
-        writeReviewContainerView.layer.borderColor = UIColor.yelpTableAccentColor().CGColor
-        writeReviewContainerView.backgroundColor = UIColor.yelpExtraLightBackgroundColor()
+        writeReviewContainerView.layer.borderColor = UIColor.yelpTableAccent().CGColor
+        writeReviewContainerView.backgroundColor = UIColor.yelpExtraLightBackground()
 
-        bottomContainerView.backgroundColor = UIColor.yelpExtraLightBackgroundColor()
+        bottomContainerView.backgroundColor = UIColor.yelpExtraLightBackground()
 
         for divider in dividerViews {
-            divider.backgroundColor = UIColor.yelpTableAccentColor()
+            divider.backgroundColor = UIColor.yelpTableAccent()
         }
     }
 

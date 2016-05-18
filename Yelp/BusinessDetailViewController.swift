@@ -96,13 +96,13 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = UIColor.yelpTableHeaderFooterColor()
+        header.backgroundColor = UIColor.yelpTableHeaderFooter()
         return header
     }
 
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = UIColor.yelpTableHeaderFooterColor()
+        header.backgroundColor = UIColor.yelpTableHeaderFooter()
         return header
     }
 
