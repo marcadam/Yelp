@@ -109,7 +109,7 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 1 && indexPath.row == 0 {
             // MapCell height
-            return 100
+            return 110
         } else {
             // All other cells use standard height
             return 44
