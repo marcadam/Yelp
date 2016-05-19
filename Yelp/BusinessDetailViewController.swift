@@ -79,11 +79,15 @@ class BusinessDetailViewController: UIViewController {
 
 extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if section == 2 {
+            return 5
+        } else {
+            return 2
+        }
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -138,6 +142,27 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                     cell?.textLabel?.text = "Call Now"
                     cell?.textLabel?.textColor = UIColor.yelpOrange()
                     cell?.detailTextLabel?.text = "Let us cater your next event!"
+                }
+            } else if indexPath.section == 2 {
+                if indexPath.row == 0 {
+                    cell?.imageView?.image = UIImage(named: "TurnSign")
+                    cell?.textLabel?.text = "Directions"
+                    cell?.detailTextLabel?.text = "3 min drive"
+                } else if indexPath.row == 1 {
+                    cell?.imageView?.image = UIImage(named: "Phone")
+                    cell?.textLabel?.text = "Call"
+                    cell?.detailTextLabel?.text = "<missing>"
+                } else if indexPath.row == 2 {
+                    cell?.imageView?.image = UIImage(named: "MessageBalloon")
+                    cell?.textLabel?.text = "Message the Business"
+                } else if indexPath.row == 3 {
+                    cell?.imageView?.image = UIImage(named: "Utensils")
+                    cell?.textLabel?.text = "Explore the Menu"
+                    cell?.detailTextLabel?.text = "<missing>"
+                } else if indexPath.row == 4 {
+                    cell?.imageView?.image = UIImage(named: "Ellipses")
+                    cell?.textLabel?.text = "More Info"
+                    cell?.detailTextLabel?.text = "<missing>"
                 }
             } else {
                 cell?.textLabel?.text = "Some label"
