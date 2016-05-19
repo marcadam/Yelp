@@ -32,7 +32,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapCell" rowHeight="100" id="CLY-rD-9Lk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapCell" rowHeight="100" id="CLY-rD-9Lk" customClass="MapTableViewCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="49.5" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CLY-rD-9Lk" id="wci-UT-jBx">
@@ -50,6 +50,9 @@
                                                 <constraint firstItem="gMA-nl-Lxq" firstAttribute="top" secondItem="wci-UT-jBx" secondAttribute="top" constant="1" id="din-IE-PA3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mapView" destination="gMA-nl-Lxq" id="OX2-oi-jp7"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
