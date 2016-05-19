@@ -38,6 +38,10 @@ class BusinessDetailViewController: UIViewController {
         let tableHeaderView = BusinessDetailsView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 215))
         tableHeaderView.business = business
         tableView.tableHeaderView = tableHeaderView
+
+        let tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 8))
+        tableFooterView.backgroundColor = UIColor.yelpTableHeaderFooter()
+        tableView.tableFooterView = tableFooterView
     }
 
     override func viewWillAppear(animated: Bool) {
