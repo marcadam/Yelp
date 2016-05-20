@@ -162,11 +162,10 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                 } else if indexPath.row == 3 {
                     cell?.imageView?.image = UIImage(named: "Utensils")
                     cell?.textLabel?.text = "Explore the Menu"
-                    cell?.detailTextLabel?.text = "<missing>"
                 } else if indexPath.row == 4 {
                     cell?.imageView?.image = UIImage(named: "Ellipses")
                     cell?.textLabel?.text = "More Info"
-                    cell?.detailTextLabel?.text = "<missing>"
+                    cell?.detailTextLabel?.text = "Hours, Website, Attire, Noise Level, Ambience"
                 }
             } else {
                 cell?.textLabel?.text = "Some label"
