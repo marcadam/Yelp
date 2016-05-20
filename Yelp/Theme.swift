@@ -11,6 +11,7 @@ import UIKit
 
 public func applyTheme() {
     UINavigationBar.appearance().translucent = false
+    UINavigationBar.appearance().barStyle = .Black
     UINavigationBar.appearance().barTintColor = UIColor.yelpRed()
     UINavigationBar.appearance().tintColor = UIColor.whiteColor()
 }
