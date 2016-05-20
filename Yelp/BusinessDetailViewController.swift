@@ -25,9 +25,9 @@ class BusinessDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let yelpID = business.yelpID {
-            getBusiness(yelpID)
-        }
+//        if let yelpID = business.yelpID {
+//            getBusiness(yelpID)
+//        }
 
         if let imageLargeURL = business.imageLargeURL {
             imageView.setImageWithURL(imageLargeURL)
@@ -74,11 +74,11 @@ class BusinessDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func getBusiness(yelpID: String) {
-        Business.getBusiness(business.yelpID!) { (business: Business!, error: NSError!) -> Void in
+//    private func getBusiness(yelpID: String) {
+//        Business.getBusiness(business.yelpID!) { (business: Business!, error: NSError!) -> Void in
 //            print("Business: \(business)")
-        }
-    }
+//        }
+//    }
 }
 
 extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelegate {
