@@ -13,12 +13,13 @@ class Business: NSObject {
     let name: String?
     let address: String?
     let imageURL: NSURL?
+    let imageLargeURL: NSURL?
+    let phoneNumber: String?
     let categories: String?
     let distance: String?
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
     var coordinate = Coordinate()
-    var imageLargeURL: NSURL?
 
     struct Coordinate {
         var latitude: Double?
@@ -37,7 +38,13 @@ class Business: NSObject {
             imageURL = nil
             imageLargeURL = nil
         }
-        
+
+        if let displayPhone = dictionary["display_phone"] as? String {
+            phoneNumber = displayPhone
+        } else {
+            phoneNumber = nil
+        }
+
         let location = dictionary["location"] as? NSDictionary
         var address = ""
         if location != nil {
