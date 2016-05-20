@@ -12,6 +12,7 @@ class BusinessDetailsView: UIView {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var reviewsCountLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
@@ -28,8 +29,9 @@ class BusinessDetailsView: UIView {
         didSet {
             nameLabel.text = business.name
             distanceLabel.text = business.distance
+            priceLabel.text = business.price
             if let reviewCount = business.reviewCount {
-                reviewsCountLabel.text = "\(reviewCount) Reviews"
+                reviewsCountLabel.text = "\(reviewCount) Review" + (reviewCount == 1 ? "" : "s")
             }
             categoriesLabel.text = business.categories
             ratingImageView.setImageWithURL(business.ratingImageURL!)

@@ -12,6 +12,7 @@ class BusinessCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var reviewsCountLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
@@ -23,9 +24,10 @@ class BusinessCell: UITableViewCell {
         didSet {
             nameLabel.text = "\(row + 1). " + business.name!
             distanceLabel.text = business.distance
-            if let reviewsCount = business.reviewCount {
-                reviewsCountLabel.text = "\(reviewsCount) Reviews"
+            if let reviewCount = business.reviewCount {
+                reviewsCountLabel.text = "\(reviewCount) Review" + (reviewCount == 1 ? "" : "s")
             }
+            priceLabel.text = business.price
             addressLabel.text = business.address
             categoriesLabel.text = business.categories
             if let imageURL = business.imageURL {

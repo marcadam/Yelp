@@ -15,6 +15,7 @@ class Business: NSObject {
     let imageURL: NSURL?
     let imageLargeURL: NSURL?
     let phoneNumber: String?
+    let price: String?
     let categories: String?
     let distance: String?
     let ratingImageURL: NSURL?
@@ -44,6 +45,9 @@ class Business: NSObject {
         } else {
             phoneNumber = nil
         }
+
+        // Price is not available from API, so just fake it.
+        price = "$$$"
 
         let location = dictionary["location"] as? NSDictionary
         var address = ""
