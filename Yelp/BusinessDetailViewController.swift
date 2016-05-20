@@ -155,7 +155,7 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                 } else if indexPath.row == 1 {
                     cell?.imageView?.image = UIImage(named: "Phone")
                     cell?.textLabel?.text = "Call"
-                    cell?.detailTextLabel?.text = "<missing>"
+                    cell?.detailTextLabel?.text = business.phoneNumber
                 } else if indexPath.row == 2 {
                     cell?.imageView?.image = UIImage(named: "MessageBalloon")
                     cell?.textLabel?.text = "Message the Business"
