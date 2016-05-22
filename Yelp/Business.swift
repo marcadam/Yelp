@@ -69,6 +69,10 @@ class Business: NSObject {
                 }
             }
 
+            if let crossStreets = location["cross_streets"] as? String {
+                self.displayAddress.crossStreets = crossStreets
+            }
+
             if let coordinatesDictionary = location["coordinate"] as? NSDictionary {
                 if let latitude = coordinatesDictionary["latitude"] as? Double {
                     coordinate.latitude = latitude

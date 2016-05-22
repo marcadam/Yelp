@@ -142,8 +142,10 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                 }
                 cell?.textLabel?.font = UIFont.boldSystemFontOfSize(15)
             } else if indexPath.section == 1 && indexPath.row == 1 {
-                cell?.textLabel?.text = business.displayAddress.address
-                cell?.detailTextLabel?.text = business.displayAddress.cityStatePostal
+                if let address = business.displayAddress.address, cityStatePostal = business.displayAddress.cityStatePostal {
+                    cell?.textLabel?.text = "\(address), \(cityStatePostal)"
+                }
+                cell?.detailTextLabel?.text = business.displayAddress.crossStreets
                 cell?.textLabel?.font = UIFont.systemFontOfSize(15)
                 cell?.preservesSuperviewLayoutMargins = false
                 cell?.layoutMargins = UIEdgeInsetsZero
