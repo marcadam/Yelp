@@ -31,9 +31,8 @@ class Business: NSObject {
         yelpID = dictionary["id"] as? String
         name = dictionary["name"] as? String
         
-        let imageURLString = dictionary["image_url"] as? String
-        if imageURLString != nil {
-            imageURL = NSURL(string: imageURLString!)!
+        if let imageURLString = dictionary["image_url"] as? String {
+            imageURL = NSURL(string: imageURLString)!
             imageLargeURL = NSURL(fileURLWithPath: "l.jpg", relativeToURL: imageURL!.URLByDeletingLastPathComponent)
         } else {
             imageURL = nil
@@ -49,23 +48,21 @@ class Business: NSObject {
         // Price is not available from API, so just fake it.
         price = "$$$"
 
-        let location = dictionary["location"] as? NSDictionary
         var address = ""
-        if location != nil {
-            let addressArray = location!["address"] as? NSArray
-            if addressArray != nil && addressArray!.count > 0 {
-                address = addressArray![0] as! String
+        if let location = dictionary["location"] as? NSDictionary {
+
+            if let addressArray = location["address"] as? NSArray where addressArray.count > 0 {
+                address = addressArray[0] as! String
             }
-            
-            let neighborhoods = location!["neighborhoods"] as? NSArray
-            if neighborhoods != nil && neighborhoods!.count > 0 {
+
+            if let neighborhoods = location["neighborhoods"] as? NSArray where neighborhoods.count > 0 {
                 if !address.isEmpty {
                     address += ", "
                 }
-                address += neighborhoods![0] as! String
+                address += neighborhoods[0] as! String
             }
 
-            if let coordinatesDictionary = location!["coordinate"] as? NSDictionary {
+            if let coordinatesDictionary = location["coordinate"] as? NSDictionary {
                 if let latitude = coordinatesDictionary["latitude"] as? Double {
                     coordinate.latitude = latitude
                 }
@@ -75,7 +72,7 @@ class Business: NSObject {
             }
         }
         self.address = address
-        
+
         let categoriesArray = dictionary["categories"] as? [[String]]
         if categoriesArray != nil {
             var categoryNames = [String]()
