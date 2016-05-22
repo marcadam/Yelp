@@ -116,6 +116,7 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 1 && indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("MapCell") as! MapTableViewCell
+            cell.business = business
             cell.preservesSuperviewLayoutMargins = false
             cell.layoutMargins = UIEdgeInsetsZero
             cell.separatorInset = UIEdgeInsetsZero
