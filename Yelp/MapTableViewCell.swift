@@ -24,6 +24,8 @@ class MapTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        mapView.userInteractionEnabled = false
+
         addAnnotationForBusiness(business)
     }
 
