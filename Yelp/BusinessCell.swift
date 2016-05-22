@@ -28,7 +28,9 @@ class BusinessCell: UITableViewCell {
                 reviewsCountLabel.text = "\(reviewCount) Review" + (reviewCount == 1 ? "" : "s")
             }
             priceLabel.text = business.price
-            addressLabel.text = business.address
+            if let address = business.displayAddress.address, let neighborhood = business.displayAddress.neighborhood {
+                addressLabel.text = "\(address), \(neighborhood)"
+            }
             categoriesLabel.text = business.categories
             if let imageURL = business.imageURL {
                 thumbImageView.setImageWithURL(imageURL)

@@ -11,7 +11,7 @@ import UIKit
 class Business: NSObject {
     let yelpID: String?
     let name: String?
-    let address: String?
+    var displayAddress = DisplayAddress()
     let imageURL: NSURL?
     let imageLargeURL: NSURL?
     let phoneNumber: String?
@@ -26,7 +26,14 @@ class Business: NSObject {
         var latitude: Double?
         var longitude: Double?
     }
-    
+
+    struct DisplayAddress {
+        var address: String?
+        var neighborhood: String?
+        var cityStatePostal: String?
+        var crossStreets: String?
+    }
+
     init(dictionary: NSDictionary) {
         yelpID = dictionary["id"] as? String
         name = dictionary["name"] as? String
@@ -48,18 +55,18 @@ class Business: NSObject {
         // Price is not available from API, so just fake it.
         price = "$$$"
 
-        var address = ""
         if let location = dictionary["location"] as? NSDictionary {
 
-            if let addressArray = location["address"] as? NSArray where addressArray.count > 0 {
-                address = addressArray[0] as! String
-            }
-
-            if let neighborhoods = location["neighborhoods"] as? NSArray where neighborhoods.count > 0 {
-                if !address.isEmpty {
-                    address += ", "
+            if let displayAddress = location["display_address"] as? NSArray where displayAddress.count >= 3 {
+                if let address = displayAddress[0] as? String {
+                    self.displayAddress.address = address
                 }
-                address += neighborhoods[0] as! String
+                if let neighborhood = displayAddress[1] as? String {
+                    self.displayAddress.neighborhood = neighborhood
+                }
+                if let cityStatePostal = displayAddress[2] as? String {
+                    self.displayAddress.cityStatePostal = cityStatePostal
+                }
             }
 
             if let coordinatesDictionary = location["coordinate"] as? NSDictionary {
@@ -71,7 +78,6 @@ class Business: NSObject {
                 }
             }
         }
-        self.address = address
 
         let categoriesArray = dictionary["categories"] as? [[String]]
         if categoriesArray != nil {
