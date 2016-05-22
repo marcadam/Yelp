@@ -136,6 +136,11 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                     cell?.textLabel?.textColor = UIColor.yelpOrange()
                     cell?.detailTextLabel?.text = "Let us cater your next event!"
                 }
+                cell?.textLabel?.font = UIFont.boldSystemFontOfSize(15)
+            } else if indexPath.section == 1 && indexPath.row == 1 {
+                cell?.textLabel?.text = business.displayAddress.address
+                cell?.detailTextLabel?.text = business.displayAddress.cityStatePostal
+                cell?.textLabel?.font = UIFont.systemFontOfSize(15)
             } else if indexPath.section == 2 {
                 if indexPath.row == 0 {
                     cell?.imageView?.image = UIImage(named: "TurnSign")
@@ -156,16 +161,13 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                     cell?.textLabel?.text = "More Info"
                     cell?.detailTextLabel?.text = "Hours, Website, Attire, Noise Level, Ambience"
                 }
-            } else {
-                cell?.textLabel?.text = "Some label"
-                cell?.detailTextLabel?.text = "Details and details"
+                cell?.textLabel?.font = UIFont.boldSystemFontOfSize(15)
             }
+
+            cell?.detailTextLabel?.font = UIFont.systemFontOfSize(11)
+            cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
             cell?.accessoryType = .DisclosureIndicator
         }
-
-        cell?.textLabel?.font = UIFont.boldSystemFontOfSize(15)
-        cell?.detailTextLabel?.font = UIFont.systemFontOfSize(11)
-        cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
 
         // Ensure the cell separators go all the way to the edges for the map/address section.
         if indexPath.section == 1 {
