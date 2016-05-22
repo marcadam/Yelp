@@ -114,13 +114,16 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?
-
         if indexPath.section == 1 && indexPath.row == 0 {
-            cell = tableView.dequeueReusableCellWithIdentifier("MapCell")
+            let cell = tableView.dequeueReusableCellWithIdentifier("MapCell") as! MapTableViewCell
+            cell.preservesSuperviewLayoutMargins = false
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.separatorInset = UIEdgeInsetsZero
+
+            return cell
         } else {
             let reuseID = "SubtitleCell"
-            cell = tableView.dequeueReusableCellWithIdentifier(reuseID)
+            var cell = tableView.dequeueReusableCellWithIdentifier(reuseID)
             if cell == nil {
                 cell = UITableViewCell(style: .Subtitle, reuseIdentifier: reuseID)
             }
@@ -141,6 +144,9 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                 cell?.textLabel?.text = business.displayAddress.address
                 cell?.detailTextLabel?.text = business.displayAddress.cityStatePostal
                 cell?.textLabel?.font = UIFont.systemFontOfSize(15)
+                cell?.preservesSuperviewLayoutMargins = false
+                cell?.layoutMargins = UIEdgeInsetsZero
+                cell?.separatorInset = UIEdgeInsetsZero
             } else if indexPath.section == 2 {
                 if indexPath.row == 0 {
                     cell?.imageView?.image = UIImage(named: "TurnSign")
@@ -167,16 +173,9 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
             cell?.detailTextLabel?.font = UIFont.systemFontOfSize(11)
             cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
             cell?.accessoryType = .DisclosureIndicator
-        }
 
-        // Ensure the cell separators go all the way to the edges for the map/address section.
-        if indexPath.section == 1 {
-            cell!.preservesSuperviewLayoutMargins = false
-            cell!.layoutMargins = UIEdgeInsetsZero
-            cell!.separatorInset = UIEdgeInsetsZero
+            return cell!
         }
-
-        return cell!
     }
 }
 
