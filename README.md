@@ -43,11 +43,6 @@ Additional things I would like to have done if I had more time:
 - Loading indicator displayed while fetching results.
 - Code refactoring.
 
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
-
-1. Best way to implement expanding/collapsing table view sections.
-2. How to create a custom UISwitch view.
-
 ## Video Walk-through
 
 Here's a walk-through of implemented user stories:
