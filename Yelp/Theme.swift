@@ -14,6 +14,8 @@ public func applyTheme() {
     UINavigationBar.appearance().barStyle = .Black
     UINavigationBar.appearance().barTintColor = UIColor.yelpRed()
     UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+    UISearchBar.appearance().translucent = false
+    UISearchBar.appearance().barTintColor = UIColor.yelpRed()
 }
 
 extension UIColor {
