@@ -161,7 +161,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
 
                 tableView.beginUpdates()
                 tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
                 tableView.endUpdates()
             } else {
                 distanceDisplayMode = .Collapsed
@@ -181,7 +181,7 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
 
                 tableView.beginUpdates()
                 tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Bottom)
+                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
                 tableView.endUpdates()
             }
         }
@@ -197,8 +197,8 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                 }
 
                 tableView.beginUpdates()
-                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .None)
-                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
+                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
                 tableView.endUpdates()
             } else {
                 sortByDisplayMode = .Collapsed
@@ -217,8 +217,8 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                 sortByRowData = [sortByChoice]
 
                 tableView.beginUpdates()
-                tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
-                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Bottom)
+                tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
+                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
                 tableView.endUpdates()
             }
         }
@@ -235,8 +235,8 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
             }
 
             tableView.beginUpdates()
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: startRow, inSection: indexPath.section)], withRowAnimation: .None)
-            tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Bottom)
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: startRow, inSection: indexPath.section)], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
             tableView.endUpdates()
         }
 
