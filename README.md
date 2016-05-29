@@ -2,8 +2,6 @@
 
 Yelp is a Yelp search app using the [Yelp API](http://www.yelp.com/developers/documentation/v2/search_api).
 
-Time spent: 27 hours spent in total
-
 ## User Stories
 
 The following **required** functionality is completed:
@@ -28,7 +26,7 @@ The following **optional** features are implemented:
    - [ ] Implement a custom switch instead of the default UISwitch.
    - [x] Distance filter should expand as in the real Yelp app
    - [x] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
-- [ ] Implement the restaurant detail page.
+- [x] Implement the restaurant detail page.
 
 The following **additional** features are implemented:
 
@@ -44,11 +42,6 @@ Additional things I would like to have done if I had more time:
 - Save and populate filters unless a new search term was entered.
 - Loading indicator displayed while fetching results.
 - Code refactoring.
-
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
-
-1. Best way to implement expanding/collapsing table view sections.
-2. How to create a custom UISwitch view.
 
 ## Video Walk-through
 
