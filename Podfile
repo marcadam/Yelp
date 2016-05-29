@@ -1,4 +1,8 @@
+platform :ios, '9.0'
 use_frameworks!
 
-pod 'AFNetworking', '~> 2.5'
-pod 'BDBOAuth1Manager'
+target 'Yelp' do
+  pod 'AFNetworking', '~> 2.5'
+  pod 'BDBOAuth1Manager'
+end
+
