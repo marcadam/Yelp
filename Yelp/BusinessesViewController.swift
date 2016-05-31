@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import MBProgressHUD
 
 class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
@@ -102,7 +103,9 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     // MARK: - Search
 
     private func searchWithTerm(term: String, limit: Int?, offset: Int?) {
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         Business.searchWithTerm(term, limit: limit, offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
             self.businesses = businesses
             self.tableView.reloadData()
             // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
@@ -118,7 +121,9 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         let distance = filters["distance"] as? Int
         let sortBy = filters["sortBy"] as? Int
         let categories = filters["categories"] as? [String]
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         Business.searchWithTerm(lastSearchTerm, limit: limit, offset: offset, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
             self.businesses = businesses
             self.tableView.reloadData()
             // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
