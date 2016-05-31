@@ -22,25 +22,32 @@ The following **optional** features are implemented:
 - [x] Search results page
    - [x] Infinite scroll for restaurant results.
    - [x] Implement map view of restaurant results.
+   - [x] Loading indicator displayed while fetching results.
 - [x] Filter page
    - [ ] Implement a custom switch instead of the default UISwitch.
    - [x] Distance filter should expand as in the real Yelp app
    - [x] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
-- [x] Implement the restaurant detail page.
+- [x] Restaurant detail page
+   - [x] Implement the restaurant detail page.
 
 The following **additional** features are implemented:
 
-- [x] Sort by filter should expand as in the real Yelp app
-- [x] Map view zooms to fit business annotations
-- [x] Scroll to top of list after new search or filtering results
-- [x] Created all icons myself! :)
+- [x] Search results page
+   - [x] Map view zooms to fit business annotations.
+   - [x] Scroll to top of list after new search or filtering of current search.
+- [x] Filter page
+   - [x] Sort by filter should expand as in the real Yelp app.
+- [x] Restaurant detail page
+   - [x] Implement a layout similiar to the actual Yelp app.
+   - [x] Add paralax to display image view when scrolling.
+   - [x] All icons on the business detail page created by me in Sketch App.
+   - [x] Scrolling down to pop business photo in a new photos modal.
 
 Additional things I would like to have done if I had more time:
 
 - Add an empty state screen for when you first launch and when there are no results.
 - Animate between the table and map views
 - Save and populate filters unless a new search term was entered.
-- Loading indicator displayed while fetching results.
 - Code refactoring.
 
 ## Video Walk-through
