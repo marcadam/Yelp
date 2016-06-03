@@ -89,13 +89,29 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     @IBAction func didToggleViewMode(sender: UIBarButtonItem) {
         if currentViewMode == .List {
             currentViewMode = .Map
-            tableView.hidden = true
-            mapView.hidden = false
+            UIView.transitionWithView(
+                view,
+                duration: 0.5,
+                options: [.TransitionFlipFromRight],
+                animations: {
+                    self.tableView.hidden = true
+                    self.mapView.hidden = false
+                },
+                completion: nil
+            )
             sender.title = ViewMode.List.rawValue
         } else {
             currentViewMode = .List
-            tableView.hidden = false
-            mapView.hidden = true
+            UIView.transitionWithView(
+                view,
+                duration: 0.5,
+                options: [.TransitionFlipFromLeft],
+                animations: {
+                    self.tableView.hidden = false
+                    self.mapView.hidden = true
+                },
+                completion: nil
+            )
             sender.title = ViewMode.Map.rawValue
         }
     }
