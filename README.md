@@ -35,6 +35,7 @@ The following **additional** features are implemented:
 - [x] Search results page
    - [x] Map view zooms to fit business annotations.
    - [x] Scroll to top of list after new search or filtering of current search.
+   - [x] Animate between the table and map views
 - [x] Filter page
    - [x] Sort by filter should expand as in the real Yelp app.
 - [x] Restaurant detail page
@@ -46,7 +47,6 @@ The following **additional** features are implemented:
 Additional things I would like to have done if I had more time:
 
 - Add an empty state screen for when you first launch and when there are no results.
-- Animate between the table and map views
 - Save and populate filters unless a new search term was entered.
 - Code refactoring.
 
