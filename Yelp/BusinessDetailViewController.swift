@@ -70,6 +70,8 @@ class BusinessDetailViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -185,6 +187,8 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension BusinessDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
