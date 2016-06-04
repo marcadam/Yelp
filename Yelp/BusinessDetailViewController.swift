@@ -195,7 +195,10 @@ extension BusinessDetailViewController: UIScrollViewDelegate {
         let scrollOffsetLimitY = CGFloat(-130)
         let scrollOffsetY = scrollView.contentOffset.y
 
-        if scrollOffsetY <= scrollOffsetLimitY {
+        if scrollOffsetY > 0 {
+            imageViewTopConstraint.constant -= (scrollOffsetY - scrollViewLastOffsetY)
+            scrollViewLastOffsetY = scrollOffsetY
+        } else if scrollOffsetY <= scrollOffsetLimitY {
             let storyboard = UIStoryboard(name: "BusinessPhotos", bundle: nil)
             let businessPhotosNC = storyboard.instantiateViewControllerWithIdentifier("BusinessPhotosNavigationController") as! UINavigationController
             let businessPhotosVC = businessPhotosNC.topViewController as! BusinessPhotosViewController
