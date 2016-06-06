@@ -274,7 +274,7 @@ extension BusinessesViewController {
 // MARK: - FilterViewControllerDelegate
 
 extension BusinessesViewController: FilterViewControllerDelegate {
-    func filterViewController(filterViewController: FilterViewController, diUpdateFilters filters: [String: AnyObject]) {
+    func filterViewController(filterViewController: FilterViewController, didUpdateFilters filters: [String: AnyObject]) {
         lastSearchFilters = filters
         searchCurrentOffset = searchDefaultOffset
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset, filters: filters)

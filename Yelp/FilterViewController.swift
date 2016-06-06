@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol FilterViewControllerDelegate {
-    optional func filterViewController(filterViewController: FilterViewController, diUpdateFilters filters: [String: AnyObject])
+    optional func filterViewController(filterViewController: FilterViewController, didUpdateFilters filters: [String: AnyObject])
 }
 
 class FilterViewController: UIViewController {
@@ -72,7 +72,7 @@ class FilterViewController: UIViewController {
         }
         filters["categories"] = selectedCategories.count > 0 ? selectedCategories : nil
 
-        delegate?.filterViewController?(self, diUpdateFilters: filters)
+        delegate?.filterViewController?(self, didUpdateFilters: filters)
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
