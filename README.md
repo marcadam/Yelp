@@ -32,6 +32,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
+- [x] General
+   - [x] Add simple launch screen
 - [x] Search results page
    - [x] Map view zooms to fit business annotations.
    - [x] Scroll to top of list after new search or filtering of current search.
@@ -46,7 +48,7 @@ The following **additional** features are implemented:
 
 Additional things I would like to have done if I had more time:
 
-- Add an empty state screen for when you first launch and when there are no results.
+- Add an empty state when there are no results.
 - Save and populate filters unless a new search term was entered.
 - Code refactoring.
 
