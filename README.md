@@ -25,7 +25,7 @@ The following **optional** features are implemented:
    - [x] Loading indicator displayed while fetching results.
 - [x] Filter page
    - [ ] Implement a custom switch instead of the default UISwitch.
-   - [x] Distance filter should expand as in the real Yelp app
+   - [x] Distance filter should expand as in the real Yelp app.
    - [x] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
 - [x] Restaurant detail page
    - [x] Implement the restaurant detail page.
@@ -37,7 +37,8 @@ The following **additional** features are implemented:
 - [x] Search results page
    - [x] Map view zooms to fit business annotations.
    - [x] Scroll to top of list after new search or filtering of current search.
-   - [x] Animate between the table and map views
+   - [x] Animate between the table and map views.
+   - [x] Add an empty state when there are no results.
 - [x] Filter page
    - [x] Sort by filter should expand as in the real Yelp app.
 - [x] Restaurant detail page
@@ -48,7 +49,6 @@ The following **additional** features are implemented:
 
 Additional things I would like to have done if I had more time:
 
-- Add an empty state when there are no results.
 - Save and populate filters unless a new search term was entered.
 - Code refactoring.
 
