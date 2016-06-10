@@ -59,6 +59,9 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         insets.bottom += InfiniteScrollActivityView.defaultHeight;
         tableView.contentInset = insets
 
+        // Set tableView footer to an empty view to prevent empty cells from being rendered
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+
         // Run initial search
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset)
         searchBar.text = lastSearchTerm
@@ -126,7 +129,12 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
             self.tableView.reloadData()
             // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
             if businesses.count > 0 {
+                self.tableView.backgroundView = nil
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            } else {
+                 let emptyStateView = BusinessesEmptyState()
+                emptyStateView.searchTerm = term
+                self.tableView.backgroundView = emptyStateView
             }
             self.addAnnotationForBusinesses(self.businesses)
         })
@@ -144,7 +152,12 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
             self.tableView.reloadData()
             // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
             if businesses.count > 0 {
+                 self.tableView.backgroundView = nil
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+            } else {
+                let emptyStateView = BusinessesEmptyState()
+                emptyStateView.searchTerm = term
+                self.tableView.backgroundView = emptyStateView
             }
             self.addAnnotationForBusinesses(self.businesses)
         }
@@ -191,6 +204,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 // MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let businesses = businesses {
             return businesses.count
@@ -251,6 +265,7 @@ extension BusinessesViewController: UIScrollViewDelegate {
 // MARK: - UISearchBarDelegate
 
 extension BusinessesViewController {
+
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }

@@ -15,6 +15,8 @@
 		222D8A7D19CCFAE000D2DB53 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222D8A7C19CCFAE000D2DB53 /* YelpClient.swift */; };
 		22AAAA991AEA0A9700A544AF /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA981AEA0A9700A544AF /* Business.swift */; };
 		22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */; };
+		491459AA1D09118A00ADD29F /* BusinessesEmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491459A91D09118A00ADD29F /* BusinessesEmptyState.xib */; };
+		491459AC1D0911AA00ADD29F /* BusinessesEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491459AB1D0911AA00ADD29F /* BusinessesEmptyState.swift */; };
 		493295741CE6B2170002A18C /* BusinessDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493295731CE6B2170002A18C /* BusinessDetailsView.xib */; };
 		493295761CE6B2EF0002A18C /* BusinessDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493295751CE6B2EF0002A18C /* BusinessDetailsView.swift */; };
 		494A77AC1CED5D1100F3D2C7 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A77AB1CED5D1100F3D2C7 /* MapTableViewCell.swift */; };
@@ -58,6 +60,8 @@
 		222D8A7C19CCFAE000D2DB53 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		22AAAA981AEA0A9700A544AF /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
+		491459A91D09118A00ADD29F /* BusinessesEmptyState.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessesEmptyState.xib; sourceTree = "<group>"; };
+		491459AB1D0911AA00ADD29F /* BusinessesEmptyState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessesEmptyState.swift; sourceTree = "<group>"; };
 		493295731CE6B2170002A18C /* BusinessDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessDetailsView.xib; sourceTree = "<group>"; };
 		493295751CE6B2EF0002A18C /* BusinessDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailsView.swift; sourceTree = "<group>"; };
 		494A77AB1CED5D1100F3D2C7 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				22AAAA9B1AEA1EC300A544AF /* BusinessesViewController.swift */,
 				4951E1E21C6B0F7600E7BE0F /* BusinessCell.swift */,
 				49EDBC721C70001A0031662E /* InfiniteScrollActivityView.swift */,
+				491459A91D09118A00ADD29F /* BusinessesEmptyState.xib */,
+				491459AB1D0911AA00ADD29F /* BusinessesEmptyState.swift */,
 			);
 			name = Businesses;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				222D8A6019CCF9F900D2DB53 /* Main.storyboard in Resources */,
 				222D8A6519CCF9F900D2DB53 /* LaunchScreen.xib in Resources */,
 				49C4E74C1CEABFFF008BDC4F /* BusinessPhotos.storyboard in Resources */,
+				491459AA1D09118A00ADD29F /* BusinessesEmptyState.xib in Resources */,
 				4973CDB11CC712BB0089A9EF /* Filters.storyboard in Resources */,
 				222D8A6219CCF9F900D2DB53 /* Images.xcassets in Resources */,
 			);
@@ -410,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				494A77AC1CED5D1100F3D2C7 /* MapTableViewCell.swift in Sources */,
+				491459AC1D0911AA00ADD29F /* BusinessesEmptyState.swift in Sources */,
 				49EDBC731C70001A0031662E /* InfiniteScrollActivityView.swift in Sources */,
 				4973CDD51CCEDF690089A9EF /* BusinessDetailViewController.swift in Sources */,
 				49EDBC751C7031990031662E /* Constants.swift in Sources */,
