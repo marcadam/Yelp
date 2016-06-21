@@ -28,7 +28,7 @@ The following **optional** features are implemented:
    - [x] Distance filter should expand as in the real Yelp app.
    - [x] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
 - [x] Restaurant detail page
-   - [x] Implement the restaurant detail page.
+   - [x] Implement the restaurant detail page. (Note: most of this page is not functional. My main focus was on replicating the Yelp UI, and getting the parallex effect/fade working.)
 
 The following **additional** features are implemented:
 
@@ -47,7 +47,7 @@ The following **additional** features are implemented:
    - [x] All icons on the business detail page created by me in Sketch App.
    - [x] Scrolling down to pop business photo in a new photos modal.
 
-Additional things I would like to have done if I had more time:
+## TODO
 
 - Save and populate filters unless a new search term was entered.
 - Code refactoring.
