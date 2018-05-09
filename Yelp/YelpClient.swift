@@ -25,17 +25,6 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     var accessToken: String!
     var accessSecret: String!
     
-//    class var sharedInstance : YelpClient {
-//        struct Static {
-//            static var token : dispatch_once_t = 0
-//            static var instance : YelpClient? = nil
-//        }
-//        
-//        dispatch_once(&Static.token) {
-//            Static.instance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-//        }
-//        return Static.instance!
-//    }
     static let sharedInstance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
 
     required init?(coder aDecoder: NSCoder) {
