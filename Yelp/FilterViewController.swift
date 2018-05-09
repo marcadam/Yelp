@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol FilterViewControllerDelegate {
-    optional func filterViewController(filterViewController: FilterViewController, didUpdateFilters filters: [String: AnyObject])
+    @objc optional func filterViewController(_ filterViewController: FilterViewController, didUpdateFilters filters: [String: AnyObject])
 }
 
 class FilterViewController: UIViewController {
@@ -19,24 +19,24 @@ class FilterViewController: UIViewController {
     weak var delegate: FilterViewControllerDelegate?
 
     enum SectionDisplayMode {
-        case Expanded, Collapsed
+        case expanded, collapsed
     }
 
     var filters = [String: AnyObject]()
 
     var offeringDealChoice = false
 
-    var distanceDisplayMode = SectionDisplayMode.Collapsed
+    var distanceDisplayMode = SectionDisplayMode.collapsed
     var distanceChoice = Filter.distance[0]
     var distanceRowData = [Filter.distance[0]]
-    var distanceRowStates = [Bool](count: Filter.distance.count, repeatedValue: false)
+    var distanceRowStates = [Bool](repeating: false, count: Filter.distance.count)
 
-    var sortByDisplayMode = SectionDisplayMode.Collapsed
+    var sortByDisplayMode = SectionDisplayMode.collapsed
     var sortByChoice = Filter.sortBy[0]
     var sortByRowData = [Filter.sortBy[0]]
-    var sortByRowStates = [Bool](count: Filter.sortBy.count, repeatedValue: false)
+    var sortByRowStates = [Bool](repeating: false, count: Filter.sortBy.count)
 
-    var categoriesDisplayMode = SectionDisplayMode.Collapsed
+    var categoriesDisplayMode = SectionDisplayMode.collapsed
     var categoriesRowData = [Filter.categories[0], Filter.categories[1], Filter.categories[2], ["name": "Show All", "code": "show_all"]]
     var categoriesSwitchStates = [Int: Bool]()
 
@@ -53,7 +53,7 @@ class FilterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onSearchButton(sender: UIBarButtonItem) {
+    @IBAction func onSearchButton(_ sender: UIBarButtonItem) {
         // Deals
         filters["deals"] = offeringDealChoice
 
@@ -73,26 +73,26 @@ class FilterViewController: UIViewController {
         filters["categories"] = selectedCategories.count > 0 ? selectedCategories : nil
 
         delegate?.filterViewController?(self, didUpdateFilters: filters)
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func onCancelButton(sender: UIBarButtonItem) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func onCancelButton(_ sender: UIBarButtonItem) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - UITableViewDataSource/UITableViewDelegate
 
 extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return Filter.sections.count
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Filter.sections[section]
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -107,72 +107,72 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell") as! SwitchCell
             cell.delegate = self
             cell.switchLabel.text = "Offering a Deal"
-            cell.switchToggle.on = offeringDealChoice
+            cell.switchToggle.isOn = offeringDealChoice
             return cell
         } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CheckmarkCell") as! CheckmarkCell
             cell.checkmarkLabel.text = distanceRowData[indexPath.row]["name"] as? String
 
-            if distanceDisplayMode == .Collapsed {
-                cell.state = .Collapsed
+            if distanceDisplayMode == .collapsed {
+                cell.state = .collapsed
             } else {
-                cell.state = distanceRowStates[indexPath.row] ? .Checked : .Unchecked
+                cell.state = distanceRowStates[indexPath.row] ? .checked : .unchecked
             }
             return cell
         } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("CheckmarkCell") as! CheckmarkCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CheckmarkCell") as! CheckmarkCell
             cell.checkmarkLabel.text = sortByRowData[indexPath.row]["name"] as? String
-            if sortByDisplayMode == .Collapsed {
-                cell.state = .Collapsed
+            if sortByDisplayMode == .collapsed {
+                cell.state = .collapsed
             } else {
-                cell.state = sortByRowStates[indexPath.row] ? .Checked : .Unchecked
+                cell.state = sortByRowStates[indexPath.row] ? .checked : .unchecked
             }
             return cell
         } else {
-            if categoriesDisplayMode == .Collapsed && indexPath.row == categoriesRowData.count - 1 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("ShowAllCell") as! ShowAllCell
+            if categoriesDisplayMode == .collapsed && indexPath.row == categoriesRowData.count - 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ShowAllCell") as! ShowAllCell
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell") as! SwitchCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SwitchCell") as! SwitchCell
                 cell.delegate = self
                 cell.switchLabel.text = Filter.categories[indexPath.row]["name"]
-                cell.switchToggle.on = categoriesSwitchStates[indexPath.row] ?? false
+                cell.switchToggle.isOn = categoriesSwitchStates[indexPath.row] ?? false
                 return cell
             }
         }
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            if distanceDisplayMode == .Collapsed {
-                distanceDisplayMode = .Expanded
+            if distanceDisplayMode == .collapsed {
+                distanceDisplayMode = .expanded
 
                 distanceRowData = Filter.distance
-                var indexPaths = [NSIndexPath]()
+                var indexPaths = [IndexPath]()
                 for row in 0..<distanceRowData.count {
-                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                    indexPaths.append(IndexPath(row: row, section: indexPath.section))
                 }
 
                 tableView.beginUpdates()
-                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
+                tableView.deleteRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .fade)
+                tableView.insertRows(at: indexPaths, with: .fade)
                 tableView.endUpdates()
             } else {
-                distanceDisplayMode = .Collapsed
+                distanceDisplayMode = .collapsed
 
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
-                cell.state = .Checked
+                let cell = tableView.cellForRow(at: indexPath) as! CheckmarkCell
+                cell.state = .checked
 
-                var indexPaths = [NSIndexPath]()
+                var indexPaths = [IndexPath]()
                 for row in 0..<distanceRowData.count {
                     distanceRowStates[row] = false
-                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                    indexPaths.append(IndexPath(row: row, section: indexPath.section))
                 }
 
                 distanceRowStates[indexPath.row] = true
@@ -180,36 +180,36 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                 distanceRowData = [distanceChoice]
 
                 tableView.beginUpdates()
-                tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
+                tableView.deleteRows(at: indexPaths, with: .fade)
+                tableView.insertRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .fade)
                 tableView.endUpdates()
             }
         }
 
         if indexPath.section == 2 {
-            if sortByDisplayMode == .Collapsed {
-                sortByDisplayMode = .Expanded
+            if sortByDisplayMode == .collapsed {
+                sortByDisplayMode = .expanded
 
                 sortByRowData = Filter.sortBy
-                var indexPaths = [NSIndexPath]()
+                var indexPaths = [IndexPath]()
                 for row in 0..<sortByRowData.count {
-                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                    indexPaths.append(IndexPath(row: row, section: indexPath.section))
                 }
 
                 tableView.beginUpdates()
-                tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
+                tableView.deleteRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .fade)
+                tableView.insertRows(at: indexPaths, with: .fade)
                 tableView.endUpdates()
             } else {
-                sortByDisplayMode = .Collapsed
+                sortByDisplayMode = .collapsed
 
-                let cell = tableView.cellForRowAtIndexPath(indexPath) as! CheckmarkCell
-                cell.state = .Checked
+                let cell = tableView.cellForRow(at: indexPath) as! CheckmarkCell
+                cell.state = .checked
 
-                var indexPaths = [NSIndexPath]()
+                var indexPaths = [IndexPath]()
                 for row in 0..<sortByRowData.count {
                     sortByRowStates[row] = false
-                    indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                    indexPaths.append(IndexPath(row: row, section: indexPath.section))
                 }
 
                 sortByRowStates[indexPath.row] = true
@@ -217,26 +217,26 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
                 sortByRowData = [sortByChoice]
 
                 tableView.beginUpdates()
-                tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
-                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: indexPath.section)], withRowAnimation: .Fade)
+                tableView.deleteRows(at: indexPaths, with: .fade)
+                tableView.insertRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .fade)
                 tableView.endUpdates()
             }
         }
 
-        if indexPath.section == 3 && categoriesDisplayMode == .Collapsed && indexPath.row == categoriesRowData.count - 1 {
-            categoriesDisplayMode = .Expanded
+        if indexPath.section == 3 && categoriesDisplayMode == .collapsed && indexPath.row == categoriesRowData.count - 1 {
+            categoriesDisplayMode = .expanded
 
             let startRow = categoriesRowData.count - 1
             categoriesRowData = Filter.categories
 
-            var indexPaths = [NSIndexPath]()
+            var indexPaths = [IndexPath]()
             for row in startRow..<categoriesRowData.count {
-                indexPaths.append(NSIndexPath(forRow: row, inSection: indexPath.section))
+                indexPaths.append(IndexPath(row: row, section: indexPath.section))
             }
 
             tableView.beginUpdates()
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: startRow, inSection: indexPath.section)], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
+            tableView.deleteRows(at: [IndexPath(row: startRow, section: indexPath.section)], with: .fade)
+            tableView.insertRows(at: indexPaths, with: .fade)
             tableView.endUpdates()
         }
 
@@ -246,8 +246,8 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - SwitchCellDelegate
 
 extension FilterViewController: SwitchCellDelegate {
-    func switchCell(switchCell: SwitchCell, didChangeValue value: Bool) {
-        let indexPath = tableView.indexPathForCell(switchCell)!
+    func switchCell(_ switchCell: SwitchCell, didChangeValue value: Bool) {
+        let indexPath = tableView.indexPath(for: switchCell)!
         switch indexPath.section {
         case 0:
             offeringDealChoice = value

@@ -33,10 +33,10 @@ class BusinessCell: UITableViewCell {
             }
             categoriesLabel.text = business.categories
             if let imageURL = business.imageURL {
-                thumbImageView.setImageWithURL(imageURL)
+                thumbImageView.setImageWith(imageURL)
             }
             if let imageURL = business.ratingImageURL {
-                ratingImageView.setImageWithURL(imageURL)
+                ratingImageView.setImageWith(imageURL)
             }
         }
     }
@@ -49,7 +49,7 @@ class BusinessCell: UITableViewCell {
         thumbImageView.clipsToBounds = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

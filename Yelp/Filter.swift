@@ -12,9 +12,9 @@ class Filter {
     static let sections = ["Deals", "Distance", "Sort By", "Category"]
 
     static let sortBy: [[String: AnyObject]] = [
-        ["name": "Best Match", "code": YelpSortMode.BestMatched.rawValue],
-        ["name": "Distance", "code": YelpSortMode.Distance.rawValue],
-        ["name": "Highest Rated", "code": YelpSortMode.HighestRated.rawValue],
+        ["name": "Best Match", "code": YelpSortMode.bestMatched.rawValue],
+        ["name": "Distance", "code": YelpSortMode.distance.rawValue],
+        ["name": "Highest Rated", "code": YelpSortMode.highestRated.rawValue],
     ]
 
     // Distance is in meters

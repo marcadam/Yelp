@@ -39,7 +39,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Search", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: nil, action: nil)
 
         searchBar = UISearchBar()
         searchBar.delegate = self
@@ -50,9 +50,9 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         tableView.estimatedRowHeight = 90
 
         // Set up Infinite Scroll loading indicator
-        let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
         loadingMoreView = InfiniteScrollActivityView(frame: frame)
-        loadingMoreView!.hidden = true
+        loadingMoreView!.isHidden = true
         tableView.addSubview(loadingMoreView!)
 
         var insets = tableView.contentInset;
@@ -60,7 +60,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         tableView.contentInset = insets
 
         // Set tableView footer to an empty view to prevent empty cells from being rendered
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         // Run initial search
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset)
@@ -77,41 +77,41 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FiltersSegue" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             let filterViewController = navigationController.topViewController as! FilterViewController
             filterViewController.delegate = self
         } else if segue.identifier == "BusinessDetailSegue" {
-            let indexPath = tableView.indexPathForCell(sender as! UITableViewCell)!
-            let businessDetailVC = segue.destinationViewController as! BusinessDetailViewController
+            let indexPath = tableView.indexPath(for: sender as! UITableViewCell)!
+            let businessDetailVC = segue.destination as! BusinessDetailViewController
             businessDetailVC.business = businesses[indexPath.row]
         }
     }
 
-    @IBAction func didToggleViewMode(sender: UIBarButtonItem) {
+    @IBAction func didToggleViewMode(_ sender: UIBarButtonItem) {
         if currentViewMode == .List {
             currentViewMode = .Map
-            UIView.transitionWithView(
-                view,
+            UIView.transition(
+                with: view,
                 duration: 0.5,
-                options: [.TransitionFlipFromRight],
+                options: [.transitionFlipFromRight],
                 animations: {
-                    self.tableView.hidden = true
-                    self.mapView.hidden = false
+                    self.tableView.isHidden = true
+                    self.mapView.isHidden = false
                 },
                 completion: nil
             )
             sender.title = ViewMode.List.rawValue
         } else {
             currentViewMode = .List
-            UIView.transitionWithView(
-                view,
+            UIView.transition(
+                with: view,
                 duration: 0.5,
-                options: [.TransitionFlipFromLeft],
+                options: [.transitionFlipFromLeft],
                 animations: {
-                    self.tableView.hidden = false
-                    self.mapView.hidden = true
+                    self.tableView.isHidden = false
+                    self.mapView.isHidden = true
                 },
                 completion: nil
             )
@@ -121,16 +121,16 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
     // MARK: - Search
 
-    private func searchWithTerm(term: String, limit: Int?, offset: Int?) {
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+    fileprivate func searchWithTerm(_ term: String, limit: Int?, offset: Int?) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         Business.searchWithTerm(term, limit: limit, offset: offset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
-            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            MBProgressHUD.hide(for: self.view, animated: true)
             self.businesses = businesses
             self.tableView.reloadData()
             // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
             if businesses.count > 0 {
                 self.tableView.backgroundView = nil
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             } else {
                  let emptyStateView = BusinessesEmptyState()
                 emptyStateView.searchTerm = term
@@ -140,20 +140,20 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         })
     }
 
-    private func searchWithTerm(term: String, limit: Int?, offset: Int?, filters: [String: AnyObject]) {
+    fileprivate func searchWithTerm(_ term: String, limit: Int?, offset: Int?, filters: [String: AnyObject]) {
         let deals = filters["deals"] as? Bool
         let distance = filters["distance"] as? Int
         let sortBy = filters["sortBy"] as? Int
         let categories = filters["categories"] as? [String]
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         Business.searchWithTerm(lastSearchTerm, limit: limit, offset: offset, sort: YelpSortMode(rawValue: sortBy!), categories: categories, distance: distance, deals: deals) { (businesses: [Business]!, error: NSError!) -> Void in
-            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            MBProgressHUD.hide(for: self.view, animated: true)
             self.businesses = businesses
             self.tableView.reloadData()
             // Need to ensure we have at least one business otherwise we will crash when scrolling to a row that does not exist.
             if businesses.count > 0 {
                  self.tableView.backgroundView = nil
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             } else {
                 let emptyStateView = BusinessesEmptyState()
                 emptyStateView.searchTerm = term
@@ -163,7 +163,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
         }
     }
 
-    private func loadMoreData() {
+    fileprivate func loadMoreData() {
         searchCurrentOffset += searchDefaultLimit
         if lastSearchFilters == nil {
             Business.searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchCurrentOffset, completion: { (businesses: [Business]!, error: NSError!) -> Void in
@@ -205,7 +205,7 @@ class BusinessesViewController: UIViewController, UISearchBarDelegate {
 
 extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let businesses = businesses {
             return businesses.count
         } else {
@@ -213,8 +213,8 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell", forIndexPath: indexPath) as! BusinessCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
 
         // Reset content to defaults
         cell.nameLabel.text = nil
@@ -232,8 +232,8 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -241,18 +241,18 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension BusinessesViewController: UIScrollViewDelegate {
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isMoreDataLoading {
             // Calculate the position of one screen length before the bottom of the results
             let scrollViewContentHeight = tableView.contentSize.height
             let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
 
             // When the user has scrolled past the threshold, start requesting
-            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
                 isMoreDataLoading = true
 
                 // Update position of loadingMoreView, and start loading indicator
-                let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
                 loadingMoreView?.frame = frame
                 loadingMoreView!.startAnimating()
 
@@ -266,17 +266,17 @@ extension BusinessesViewController: UIScrollViewDelegate {
 
 extension BusinessesViewController {
 
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
 
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
     }
 
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let searchTerm = searchBar.text!
         lastSearchTerm = searchTerm
         lastSearchFilters = nil
@@ -289,7 +289,7 @@ extension BusinessesViewController {
 // MARK: - FilterViewControllerDelegate
 
 extension BusinessesViewController: FilterViewControllerDelegate {
-    func filterViewController(filterViewController: FilterViewController, didUpdateFilters filters: [String: AnyObject]) {
+    func filterViewController(_ filterViewController: FilterViewController, didUpdateFilters filters: [String: AnyObject]) {
         lastSearchFilters = filters
         searchCurrentOffset = searchDefaultOffset
         searchWithTerm(lastSearchTerm, limit: searchDefaultLimit, offset: searchDefaultOffset, filters: filters)
@@ -300,13 +300,13 @@ extension BusinessesViewController: FilterViewControllerDelegate {
 
 extension BusinessesViewController {
 
-    private func goToLocation(location: CLLocation) {
+    fileprivate func goToLocation(_ location: CLLocation) {
         let span = MKCoordinateSpanMake(0.1, 0.1)
         let region = MKCoordinateRegionMake(location.coordinate, span)
         mapView.setRegion(region, animated: false)
     }
 
-    private func addAnnotationForBusinesses(businesses: [Business]) {
+    fileprivate func addAnnotationForBusinesses(_ businesses: [Business]) {
         let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
         mapView.removeAnnotations(annotationsToRemove)
 
@@ -321,7 +321,7 @@ extension BusinessesViewController {
         zoomMapToFitAnnotationsForBusiness(businesses)
     }
 
-    private func zoomMapToFitAnnotationsForBusiness(businesses: [Business]) {
+    fileprivate func zoomMapToFitAnnotationsForBusiness(_ businesses: [Business]) {
         let rectToDisplay = self.businesses.reduce(MKMapRectNull) { (mapRect: MKMapRect, business: Business) -> MKMapRect in
             let coordinate = CLLocationCoordinate2D(latitude: business.coordinate.latitude!, longitude: business.coordinate.longitude!)
             let businessPointRect = MKMapRect(origin: MKMapPointForCoordinate(coordinate), size: MKMapSize(width: 0, height: 0))

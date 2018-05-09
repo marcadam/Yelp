@@ -12,13 +12,13 @@ class Business: NSObject {
     let yelpID: String?
     let name: String?
     var displayAddress = DisplayAddress()
-    let imageURL: NSURL?
-    let imageLargeURL: NSURL?
+    let imageURL: URL?
+    let imageLargeURL: URL?
     let phoneNumber: String?
     let price: String?
     let categories: String?
     let distance: String?
-    let ratingImageURL: NSURL?
+    let ratingImageURL: URL?
     let reviewCount: NSNumber?
     var coordinate = Coordinate()
 
@@ -39,8 +39,8 @@ class Business: NSObject {
         name = dictionary["name"] as? String
         
         if let imageURLString = dictionary["image_url"] as? String {
-            imageURL = NSURL(string: imageURLString)!
-            imageLargeURL = NSURL(fileURLWithPath: "l.jpg", relativeToURL: imageURL!.URLByDeletingLastPathComponent)
+            imageURL = URL(string: imageURLString)!
+            imageLargeURL = URL(fileURLWithPath: "l.jpg", relativeTo: imageURL!.deletingLastPathComponent())
         } else {
             imageURL = nil
             imageLargeURL = nil
@@ -57,7 +57,7 @@ class Business: NSObject {
 
         if let location = dictionary["location"] as? NSDictionary {
 
-            if let displayAddress = location["display_address"] as? NSArray where displayAddress.count >= 3 {
+            if let displayAddress = location["display_address"] as? NSArray, displayAddress.count >= 3 {
                 if let address = displayAddress[0] as? String {
                     self.displayAddress.address = address
                 }
@@ -90,7 +90,7 @@ class Business: NSObject {
                 let categoryName = category[0]
                 categoryNames.append(categoryName)
             }
-            categories = categoryNames.joinWithSeparator(", ")
+            categories = categoryNames.joined(separator: ", ")
         } else {
             categories = nil
         }
@@ -104,7 +104,7 @@ class Business: NSObject {
         
         let ratingImageURLString = dictionary["rating_img_url_large"] as? String
         if ratingImageURLString != nil {
-            ratingImageURL = NSURL(string: ratingImageURLString!)
+            ratingImageURL = URL(string: ratingImageURLString!)
         } else {
             ratingImageURL = nil
         }
@@ -112,7 +112,7 @@ class Business: NSObject {
         reviewCount = dictionary["review_count"] as? NSNumber
     }
     
-    class func businesses(array array: [NSDictionary]) -> [Business] {
+    class func businesses(array: [NSDictionary]) -> [Business] {
         var businesses = [Business]()
         for dictionary in array {
             let business = Business(dictionary: dictionary)
@@ -121,11 +121,11 @@ class Business: NSObject {
         return businesses
     }
     
-    class func searchWithTerm(term: String, limit: Int?, offset: Int?, completion: ([Business]!, NSError!) -> Void) {
+    class func searchWithTerm(_ term: String, limit: Int?, offset: Int?, completion: ([Business]?, NSError?) -> Void) {
         YelpClient.sharedInstance.searchWithTerm(term, limit: limit, offset: offset, completion: completion)
     }
     
-    class func searchWithTerm(term: String, limit: Int?, offset: Int?, sort: YelpSortMode?, categories: [String]?, distance: Int?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
+    class func searchWithTerm(_ term: String, limit: Int?, offset: Int?, sort: YelpSortMode?, categories: [String]?, distance: Int?, deals: Bool?, completion: ([Business]?, NSError?) -> Void) -> Void {
         YelpClient.sharedInstance.searchWithTerm(term, limit: limit, offset: offset, sort: sort, categories: categories, distance: distance, deals: deals, completion: completion)
     }
 }

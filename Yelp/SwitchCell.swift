@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol SwitchCellDelegate {
-    optional func switchCell(switchCell: SwitchCell, didChangeValue value: Bool)
+    @objc optional func switchCell(_ switchCell: SwitchCell, didChangeValue value: Bool)
 }
 
 class SwitchCell: UITableViewCell {
@@ -25,13 +25,13 @@ class SwitchCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
 
-    @IBAction func onSwitchValueChanged(sender: AnyObject) {
-        delegate?.switchCell?(self, didChangeValue: switchToggle.on)
+    @IBAction func onSwitchValueChanged(_ sender: AnyObject) {
+        delegate?.switchCell?(self, didChangeValue: switchToggle.isOn)
     }
 }

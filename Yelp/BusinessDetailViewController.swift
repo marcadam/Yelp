@@ -25,7 +25,7 @@ class BusinessDetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let imageLargeURL = business.imageLargeURL {
-            imageView.setImageWithURL(imageLargeURL)
+            imageView.setImageWith(imageLargeURL)
         }
 
         alphaView.alpha = alphaViewDefaultAlpha
@@ -39,7 +39,7 @@ class BusinessDetailViewController: UIViewController {
         tableView.tableFooterView = tableFooterView
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alphaView.alpha = alphaViewDefaultAlpha
         (tableView.tableHeaderView as! BusinessDetailsView).topContainerView.alpha = 1
@@ -56,7 +56,7 @@ class BusinessDetailViewController: UIViewController {
         headerView.setNeedsLayout()
         headerView.layoutIfNeeded()
 
-        let height = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
         var frame = headerView.frame
         frame.size.height = height
         headerView.frame = frame
@@ -73,11 +73,11 @@ class BusinessDetailViewController: UIViewController {
 // MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
             return 5
         } else {
@@ -85,27 +85,27 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
         }
     }
 
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 7
     }
 
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
     }
 
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
         header.backgroundColor = UIColor.yelpTableHeaderFooter()
         return header
     }
 
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let header = UIView()
         header.backgroundColor = UIColor.yelpTableHeaderFooter()
         return header
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1 && indexPath.row == 0 {
             // MapCell height
             return 110
@@ -115,20 +115,20 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
         }
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 && indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("MapCell") as! MapTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell") as! MapTableViewCell
             cell.business = business
             cell.preservesSuperviewLayoutMargins = false
-            cell.layoutMargins = UIEdgeInsetsZero
-            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsets.zero
+            cell.separatorInset = UIEdgeInsets.zero
 
             return cell
         } else {
             let reuseID = "SubtitleCell"
-            var cell = tableView.dequeueReusableCellWithIdentifier(reuseID)
+            var cell = tableView.dequeueReusableCell(withIdentifier: reuseID)
             if cell == nil {
-                cell = UITableViewCell(style: .Subtitle, reuseIdentifier: reuseID)
+                cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseID)
             }
 
             if indexPath.section == 0 {
@@ -142,16 +142,16 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                     cell?.textLabel?.textColor = UIColor.yelpOrange()
                     cell?.detailTextLabel?.text = "Let us cater your next event!"
                 }
-                cell?.textLabel?.font = UIFont.boldSystemFontOfSize(15)
+                cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             } else if indexPath.section == 1 && indexPath.row == 1 {
-                if let address = business.displayAddress.address, cityStatePostal = business.displayAddress.cityStatePostal {
+                if let address = business.displayAddress.address, let cityStatePostal = business.displayAddress.cityStatePostal {
                     cell?.textLabel?.text = "\(address), \(cityStatePostal)"
                 }
                 cell?.detailTextLabel?.text = business.displayAddress.crossStreets
-                cell?.textLabel?.font = UIFont.systemFontOfSize(15)
+                cell?.textLabel?.font = UIFont.systemFont(ofSize: 15)
                 cell?.preservesSuperviewLayoutMargins = false
-                cell?.layoutMargins = UIEdgeInsetsZero
-                cell?.separatorInset = UIEdgeInsetsZero
+                cell?.layoutMargins = UIEdgeInsets.zero
+                cell?.separatorInset = UIEdgeInsets.zero
             } else if indexPath.section == 2 {
                 if indexPath.row == 0 {
                     cell?.imageView?.image = UIImage(named: "TurnSign")
@@ -172,26 +172,26 @@ extension BusinessDetailViewController: UITableViewDataSource, UITableViewDelega
                     cell?.textLabel?.text = "More Info"
                     cell?.detailTextLabel?.text = "Hours, Website, Attire, Noise Level, Ambience"
                 }
-                cell?.textLabel?.font = UIFont.boldSystemFontOfSize(15)
+                cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             }
 
-            cell?.detailTextLabel?.font = UIFont.systemFontOfSize(11)
-            cell?.detailTextLabel?.textColor = UIColor.darkGrayColor()
-            cell?.accessoryType = .DisclosureIndicator
+            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 11)
+            cell?.detailTextLabel?.textColor = UIColor.darkGray
+            cell?.accessoryType = .disclosureIndicator
 
             return cell!
         }
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 // MARK: - UIScrollViewDelegate
 
 extension BusinessDetailViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollOffsetLimitY = CGFloat(-130)
         let scrollOffsetY = scrollView.contentOffset.y
 
@@ -200,11 +200,11 @@ extension BusinessDetailViewController: UIScrollViewDelegate {
             scrollViewLastOffsetY = scrollOffsetY
         } else if scrollOffsetY <= scrollOffsetLimitY {
             let storyboard = UIStoryboard(name: "BusinessPhotos", bundle: nil)
-            let businessPhotosNC = storyboard.instantiateViewControllerWithIdentifier("BusinessPhotosNavigationController") as! UINavigationController
+            let businessPhotosNC = storyboard.instantiateViewController(withIdentifier: "BusinessPhotosNavigationController") as! UINavigationController
             let businessPhotosVC = businessPhotosNC.topViewController as! BusinessPhotosViewController
             businessPhotosVC.imageLargeURL = business.imageLargeURL
 
-            presentViewController(businessPhotosNC, animated: false, completion: nil)
+            present(businessPhotosNC, animated: false, completion: nil)
         } else if scrollOffsetY < 0 {
             let alpha = alphaViewDefaultAlpha + (scrollOffsetY / 70)
             alphaView.alpha = alpha

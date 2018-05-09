@@ -18,17 +18,17 @@ class CheckmarkCell: UITableViewCell {
     let cellStateCollapsedImage = UIImage(named: "ExpandArrow")
 
     enum CellState {
-        case Checked, Unchecked, Collapsed
+        case checked, unchecked, collapsed
     }
 
-    var state: CellState = CellState.Collapsed {
+    var state: CellState = CellState.collapsed {
         didSet {
             switch state {
-            case .Checked:
+            case .checked:
                 checkmarkImage.image = cellStateCheckedImage
-            case .Unchecked:
+            case .unchecked:
                 checkmarkImage.image = cellStateUncheckedImage
-            case .Collapsed:
+            case .collapsed:
                 checkmarkImage.image = cellStateCollapsedImage
             }
         }
@@ -41,7 +41,7 @@ class CheckmarkCell: UITableViewCell {
         checkmarkImage.image = cellStateUncheckedImage
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

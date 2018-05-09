@@ -20,11 +20,11 @@ class MapTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        mapView.userInteractionEnabled = false
+        mapView.isUserInteractionEnabled = false
 
         addAnnotationForBusiness(business)
     }
@@ -35,13 +35,13 @@ class MapTableViewCell: UITableViewCell {
 
 extension MapTableViewCell {
 
-    private func goToLocation(location: CLLocation) {
+    fileprivate func goToLocation(_ location: CLLocation) {
         let span = MKCoordinateSpanMake(0.1, 0.1)
         let region = MKCoordinateRegionMake(location.coordinate, span)
         mapView.setRegion(region, animated: false)
     }
 
-    private func addAnnotationForBusiness(businesses: Business) {
+    fileprivate func addAnnotationForBusiness(_ businesses: Business) {
         let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
         mapView.removeAnnotations(annotationsToRemove)
 
@@ -54,8 +54,8 @@ extension MapTableViewCell {
         centerAndZoomMapAroundBusiness(business)
     }
 
-    private func centerAndZoomMapAroundBusiness(business: Business) {
-        if let latitude = business.coordinate.latitude, longitude = business.coordinate.longitude {
+    fileprivate func centerAndZoomMapAroundBusiness(_ business: Business) {
+        if let latitude = business.coordinate.latitude, let longitude = business.coordinate.longitude {
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             let span = MKCoordinateSpanMake(0.005, 0.005)
             let region = MKCoordinateRegion(center: coordinate, span: span)

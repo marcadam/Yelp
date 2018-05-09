@@ -33,7 +33,7 @@ class BusinessesEmptyState: UIView {
     func initSubviews() {
         // standard initialization logic
         let nib = UINib(nibName: "BusinessesEmptyState", bundle: nil)
-        nib.instantiateWithOwner(self, options: nil)
+        nib.instantiate(withOwner: self, options: nil)
         contentView.frame = bounds
         addSubview(contentView)
     }

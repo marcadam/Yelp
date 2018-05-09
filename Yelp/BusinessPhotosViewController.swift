@@ -12,14 +12,14 @@ class BusinessPhotosViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
 
-    var imageLargeURL: NSURL!
+    var imageLargeURL: URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         if let imageLargeURL = imageLargeURL {
-            imageView.setImageWithURL(imageLargeURL)
+            imageView.setImageWith(imageLargeURL)
         }
     }
 
@@ -28,8 +28,8 @@ class BusinessPhotosViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func didTapCloseButton(sender: UIBarButtonItem) {
-        parentViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func didTapCloseButton(_ sender: UIBarButtonItem) {
+        parent?.dismiss(animated: true, completion: nil)
     }
 
 }

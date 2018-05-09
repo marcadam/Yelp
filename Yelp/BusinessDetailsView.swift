@@ -34,7 +34,7 @@ class BusinessDetailsView: UIView {
                 reviewsCountLabel.text = "\(reviewCount) Review" + (reviewCount == 1 ? "" : "s")
             }
             categoriesLabel.text = business.categories
-            ratingImageView.setImageWithURL(business.ratingImageURL!)
+            ratingImageView.setImageWith(business.ratingImageURL!)
         }
     }
 
@@ -51,14 +51,14 @@ class BusinessDetailsView: UIView {
     func initSubviews() {
         // standard initialization logic
         let nib = UINib(nibName: "BusinessDetailsView", bundle: nil)
-        nib.instantiateWithOwner(self, options: nil)
+        nib.instantiate(withOwner: self, options: nil)
         contentView.frame = bounds
         addSubview(contentView)
 
         // custom initialization logic
         writeReviewContainerView.layer.cornerRadius = 5.0
         writeReviewContainerView.layer.borderWidth = 1.0
-        writeReviewContainerView.layer.borderColor = UIColor.yelpTableAccent().CGColor
+        writeReviewContainerView.layer.borderColor = UIColor.yelpTableAccent().cgColor
         writeReviewContainerView.backgroundColor = UIColor.yelpExtraLightBackground()
 
         bottomContainerView.backgroundColor = UIColor.yelpExtraLightBackground()

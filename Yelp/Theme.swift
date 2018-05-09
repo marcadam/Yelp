@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 public func applyTheme() {
-    UINavigationBar.appearance().translucent = false
-    UINavigationBar.appearance().barStyle = .Black
+    UINavigationBar.appearance().isTranslucent = false
+    UINavigationBar.appearance().barStyle = .black
     UINavigationBar.appearance().barTintColor = UIColor.yelpRed()
-    UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-    UISearchBar.appearance().translucent = false
+    UINavigationBar.appearance().tintColor = UIColor.white
+    UISearchBar.appearance().isTranslucent = false
     UISearchBar.appearance().barTintColor = UIColor.yelpRed()
 }
 
