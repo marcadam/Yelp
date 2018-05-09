@@ -55,13 +55,13 @@ class FilterViewController: UIViewController {
 
     @IBAction func onSearchButton(_ sender: UIBarButtonItem) {
         // Deals
-        filters["deals"] = offeringDealChoice
+        filters["deals"] = offeringDealChoice as AnyObject
 
         // Distance
-        filters["distance"] = distanceChoice["code"] as? Int
+        filters["distance"] = distanceChoice["code"] as? Int as AnyObject
 
         // Sort By
-        filters["sortBy"] = sortByChoice["code"] as? Int
+        filters["sortBy"] = sortByChoice["code"] as? Int as AnyObject
 
         // Categories
         var selectedCategories = [String]()
@@ -70,7 +70,9 @@ class FilterViewController: UIViewController {
                 selectedCategories.append(Filter.categories[row]["code"]!)
             }
         }
-        filters["categories"] = selectedCategories.count > 0 ? selectedCategories : nil
+        if selectedCategories.count > 0 {
+            filters["categories"] = selectedCategories as AnyObject
+        }
 
         delegate?.filterViewController?(self, didUpdateFilters: filters)
         presentingViewController?.dismiss(animated: true, completion: nil)

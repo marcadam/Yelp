@@ -12,18 +12,18 @@ class Filter {
     static let sections = ["Deals", "Distance", "Sort By", "Category"]
 
     static let sortBy: [[String: AnyObject]] = [
-        ["name": "Best Match", "code": YelpSortMode.bestMatched.rawValue],
-        ["name": "Distance", "code": YelpSortMode.distance.rawValue],
-        ["name": "Highest Rated", "code": YelpSortMode.highestRated.rawValue],
+        ["name": "Best Match" as AnyObject, "code": YelpSortMode.bestMatched.rawValue as AnyObject],
+        ["name": "Distance" as AnyObject, "code": YelpSortMode.distance.rawValue as AnyObject],
+        ["name": "Highest Rated" as AnyObject, "code": YelpSortMode.highestRated.rawValue as AnyObject],
     ]
 
     // Distance is in meters
     static let distance: [[String: AnyObject]] = [
-        ["name": "Best Match", "code": 0],
-        ["name": "0.3 mile", "code": 483],
-        ["name": "0.5 mile", "code": 805],
-        ["name": "1 mile", "code": 1609],
-        ["name": "5 miles", "code": 8047],
+        ["name": "Best Match" as AnyObject, "code": 0 as AnyObject],
+        ["name": "0.3 mile" as AnyObject, "code": 483 as AnyObject],
+        ["name": "0.5 mile" as AnyObject, "code": 805 as AnyObject],
+        ["name": "1 mile" as AnyObject, "code": 1609 as AnyObject],
+        ["name": "5 miles" as AnyObject, "code": 8047 as AnyObject],
     ]
 
     static let categories = [

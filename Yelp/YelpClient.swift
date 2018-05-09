@@ -25,23 +25,24 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     var accessToken: String!
     var accessSecret: String!
     
-    class var sharedInstance : YelpClient {
-        struct Static {
-            static var token : dispatch_once_t = 0
-            static var instance : YelpClient? = nil
-        }
-        
-        dispatch_once(&Static.token) {
-            Static.instance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        }
-        return Static.instance!
-    }
-    
+//    class var sharedInstance : YelpClient {
+//        struct Static {
+//            static var token : dispatch_once_t = 0
+//            static var instance : YelpClient? = nil
+//        }
+//        
+//        dispatch_once(&Static.token) {
+//            Static.instance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
+//        }
+//        return Static.instance!
+//    }
+    static let sharedInstance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    init(consumerKey key: String!, consumerSecret secret: String!, accessToken: String!, accessSecret: String!) {
+    private init(consumerKey key: String!, consumerSecret secret: String!, accessToken: String!, accessSecret: String!) {
         self.accessToken = accessToken
         self.accessSecret = accessSecret
         let baseUrl = URL(string: "https://api.yelp.com/v2/")
@@ -51,47 +52,50 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         self.requestSerializer.saveAccessToken(token)
     }
     
-    func searchWithTerm(_ term: String, limit: Int?, offset: Int?, completion: @escaping ([Business]?, NSError?) -> Void) -> AFHTTPRequestOperation {
+    @discardableResult func searchWithTerm(_ term: String, limit: Int?, offset: Int?, completion: @escaping ([Business]?, NSError?) -> Void) -> AFHTTPRequestOperation {
         return searchWithTerm(term, limit: limit, offset: offset, sort: nil, categories: nil, distance: nil, deals: nil, completion: completion)
     }
     
-    func searchWithTerm(_ term: String, limit: Int?, offset: Int?, sort: YelpSortMode?, categories: [String]?, distance: Int?, deals: Bool?, completion: @escaping ([Business]?, NSError?) -> Void) -> AFHTTPRequestOperation {
+    @discardableResult func searchWithTerm(_ term: String, limit: Int?, offset: Int?, sort: YelpSortMode?, categories: [String]?, distance: Int?, deals: Bool?, completion: @escaping ([Business]?, NSError?) -> Void) -> AFHTTPRequestOperation {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
 
         // Default the location to San Francisco
-        var parameters: [String : AnyObject] = ["term": term, "ll": "\(Constants.DefaultLocation.latitude),\(Constants.DefaultLocation.longitude)"]
+        // TODO: check all these casts to AnyObject
+        var parameters: [String : AnyObject] = ["term": term as AnyObject, "ll": "\(Constants.DefaultLocation.latitude),\(Constants.DefaultLocation.longitude)" as AnyObject]
 
         if limit != nil && offset != nil {
-            parameters["limit"] = limit
-            parameters["offset"] = offset
+            parameters["limit"] = limit as AnyObject
+            parameters["offset"] = offset as AnyObject
         }
 
         if sort != nil {
-            parameters["sort"] = sort!.rawValue
+            parameters["sort"] = sort!.rawValue as AnyObject
         }
         
         if categories != nil && categories!.count > 0 {
-            parameters["category_filter"] = (categories!).joined(separator: ",")
+            parameters["category_filter"] = (categories!).joined(separator: ",") as AnyObject
         }
 
         if distance != nil && distance != 0 {
-            parameters["radius_filter"] = distance!
+            parameters["radius_filter"] = distance! as AnyObject
         }
 
         if deals != nil {
-            parameters["deals_filter"] = deals!
+            parameters["deals_filter"] = deals! as AnyObject
         }
         
         return self.get(
             "search",
             parameters: parameters,
-            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            success: { (operation: AFHTTPRequestOperation!, response: Any!) -> Void in
+                // TODO: check this
+                guard let response = response as? NSDictionary else { fatalError() }
                 if let dictionaries = response["businesses"] as? [NSDictionary] {
                     completion(Business.businesses(array: dictionaries), nil)
                 }
             },
-            failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
-                completion(nil, error)
+            failure: { (operation: AFHTTPRequestOperation?, error: Error!) -> Void in
+                completion(nil, error as NSError)
             }
         )!
     }
@@ -103,14 +107,14 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         return self.get(
             endpointName,
             parameters: nil,
-            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            success: { (operation: AFHTTPRequestOperation!, response: Any!) -> Void in
                 // print(response)
                 if let dictionary = response as? NSDictionary {
                     completion(Business(dictionary: dictionary), nil)
                 }
             },
-            failure: { (operation: AFHTTPRequestOperation?, error: NSError!) -> Void in
-                completion(nil, error)
+            failure: { (operation: AFHTTPRequestOperation?, error: Error!) -> Void in
+                completion(nil, error as NSError)
             }
         )!
     }
